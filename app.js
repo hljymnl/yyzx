@@ -54,12 +54,16 @@ function speakRead() {
 }
 
 // 通用：从一段“英文 + 中文”混合文本中提取英文并朗读
+// 通用：读按钮所在那一段容器里的“英文 + 中文”混合文本，提取英文部分朗读
 function sayEx(el) {
-  if (!el || !el.textContent) return;
-  // 读容器文本开头连续的英文部分（按钮文字在尾部不影响）
-  const txt = el.textContent.trim();
+  if (!el) return;
+  // 读按钮的父级容器（句子所在的那一块），先去掉按钮自身文字
+  let cont = el.parentNode;
+  if (!cont || !cont.textContent) return;
+  let txt = cont.textContent.replace(/🔊\s*(读例句|读句|朗读|读范文)?/g, "").trim();
+  // 提取开头连续的英文部分（含标点），中文之前停止
   const m = txt.match(/^[A-Za-z0-9 .,'!?"();:/-]+/);
-  const en = (m ? m[0] : txt).trim();
+  const en = (m ? m[0].trim() : "").trim();
   if (!en) return;
   try {
     if (!window.speechSynthesis) return;
