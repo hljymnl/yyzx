@@ -165,6 +165,15 @@ function answerQuick(btn, round) {
   nb.onclick = () => nextQuick(quickWords);
 }
 
+function resetQuick() {
+  // 从整个单词库随机选10个新词重新开始速测
+  const allWords = WORD_DAYS.flatMap(d => d.words);
+  const picked = allWords.sort(() => Math.random() - 0.5).slice(0, 10);
+  fastRound = 0; fastScore = 0; fastWrong = [];
+  nextQuick(picked);
+  alert("🔄 已换一波新单词，继续测！");
+}
+
 function renderQuiz(items, containerId, immediate) {
   const c = $(containerId);
   c.innerHTML = items.map((it, i) => `
@@ -318,6 +327,27 @@ function checkPractice(pi) {
   });
 }
 
+function shufflePractice() {
+  // 每组：随机重排题目顺序 + 选项顺序
+  const holderSel = document.querySelectorAll("[data-practice]");
+  PRACTICE.forEach((p, pi) => {
+    const holder = document.querySelector(`[data-practice="${pi}"]`);
+    if (!holder) return;
+    const shuffled = [...p.items].sort(() => Math.random() - 0.5);
+    holder.innerHTML = shuffled.map((it, i) => {
+      const optsHtml = it.opts.length > 0
+        ? `<div class="q-opts">${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}</div>`
+        : `<div class="q-opts"></div>`;
+      return `<div class="quiz-q" data-idx="${i}">
+        <div class="q-text">${it.q}</div>
+        ${optsHtml}
+        <div class="q-explain"></div>
+      </div>`;
+    }).join("");
+  });
+  alert("🔄 已随机重排题目，重新做一遍巩固吧！");
+}
+
 // ---------- 作文 ----------
 function renderWriting() {
   $("writingList").innerHTML = WRITING.map(w => `
@@ -375,7 +405,84 @@ function checkPhonics() {
   });
 }
 
+function shufflePhonics() {
+  // 重排题目顺序
+  const shuffled = [...PHONICS_QUIZ].sort(() => Math.random() - 0.5);
+  $("phonicsQuiz").innerHTML = shuffled.map((it, i) => `
+    <div class="quiz-q" data-idx="${i}">
+      <div class="q-text">${it.q}</div>
+      <div class="q-opts">
+        ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
+      </div>
+      <div class="q-explain"></div>
+    </div>`).join("");
+}
+
 // ---------- 基础练习 ----------
+// 补充题库（换一批时随机从中抽取，增加词汇量）
+const BASIC_EXTRA = [
+  // 字母
+  { lv: 0, q: "字母'D'的小写是？", opts: ["d", "b", "p", "q"], ans: 0 },
+  { lv: 0, q: "字母'P'的小写是？", opts: ["b", "p", "d", "q"], ans: 1 },
+  { lv: 0, q: "字母'Q'的小写是？", opts: ["p", "d", "b", "q"], ans: 3 },
+  { lv: 0, q: "字母'T'的小写是？", opts: ["f", "t", "l", "i"], ans: 1 },
+  { lv: 0, q: "字母'Y'的小写是？", opts: ["v", "w", "y", "x"], ans: 2 },
+  // 数字颜色
+  { lv: 1, q: "'二' 是？", opts: ["two", "one", "three", "ten"], ans: 0 },
+  { lv: 1, q: "'蓝色' 是？", opts: ["red", "blue", "black", "green"], ans: 1 },
+  { lv: 1, q: "'七' 是？", opts: ["six", "seven", "eight", "nine"], ans: 1 },
+  { lv: 1, q: "'绿色' 是？", opts: ["green", "grey", "purple", "orange"], ans: 0 },
+  { lv: 1, q: "'黑色' 是？", opts: ["white", "black", "brown", "pink"], ans: 1 },
+  { lv: 1, q: "'十' 是？", opts: ["nine", "ten", "eleven", "twelve"], ans: 1 },
+  { lv: 1, q: "'白色' 是？", opts: ["black", "white", "purple", "pink"], ans: 1 },
+  // 问候
+  { lv: 2, q: "'早上好' 是？", opts: ["Good morning", "Good night", "Good evening", "Hi"], ans: 0 },
+  { lv: 2, q: "'晚安' 是？", opts: ["Good morning", "Good night", "Hello", "Bye"], ans: 1 },
+  { lv: 2, q: "'请问'（打扰一下） 是？", opts: ["Sorry", "Thank you", "Excuse me", "Please"], ans: 2 },
+  { lv: 2, q: "'不客气' 是？", opts: ["You're welcome", "Sorry", "Goodbye", "Please"], ans: 0 },
+  // 动词
+  { lv: 3, q: "'写' 是？", opts: ["read", "write", "speak", "listen"], ans: 1 },
+  { lv: 3, q: "'听' 是？", opts: ["write", "listen", "speak", "read"], ans: 1 },
+  { lv: 3, q: "'说'（说话） 是？", opts: ["speak", "hear", "walk", "run"], ans: 0 },
+  { lv: 3, q: "'走' 是？", opts: ["run", "walk", "jump", "sit"], ans: 1 },
+  { lv: 3, q: "'睡' 是？", opts: ["eat", "drink", "sleep", "read"], ans: 2 },
+  { lv: 3, q: "'坐' 是？", opts: ["sit", "stand", "jump", "run"], ans: 0 },
+  { lv: 3, q: "'站' 是？", opts: ["sit", "stand", "jump", "run"], ans: 1 },
+  // 名词
+  { lv: 4, q: "'笔' 是？", opts: ["book", "pen", "pencil", "ruler"], ans: 1 },
+  { lv: 4, q: "'包' 是？", opts: ["bag", "box", "cup", "cap"], ans: 0 },
+  { lv: 4, q: "'椅子' 是？", opts: ["chair", "table", "bed", "desk"], ans: 0 },
+  { lv: 4, q: "'床' 是？", opts: ["chair", "bed", "desk", "door"], ans: 1 },
+  { lv: 4, q: "'门' 是？", opts: ["door", "window", "wall", "floor"], ans: 0 },
+  { lv: 4, q: "'窗' 是？", opts: ["door", "window", "wall", "floor"], ans: 1 },
+  { lv: 4, q: "'猫' 是？", opts: ["dog", "cat", "bird", "fish"], ans: 1 },
+  { lv: 4, q: "'狗' 是？", opts: ["dog", "cat", "bird", "fish"], ans: 0 },
+  // 句子
+  { lv: 5, q: "'我喜欢读书' 正确说法？", opts: ["I like reading.", "I reading like.", "Like I reading.", "Reading I like."], ans: 0 },
+  { lv: 5, q: "'这是一本书' 正确说法？", opts: ["This a book is.", "This is a book.", "A book this is.", "Is this a book."], ans: 1 },
+  { lv: 5, q: "'我想喝水' 正确说法？", opts: ["I want to drink water.", "I drink want water.", "Water want I drink.", "Drink water want I."], ans: 0 }
+];
+
+function shuffleBasic() {
+  // 每个级别：原题 + 补充题合并，随机抽5题
+  BASIC_LEVELS.forEach((lv, li) => {
+    const extras = BASIC_EXTRA.filter(e => e.lv === li).map(e => ({ q: e.q, opts: e.opts, ans: e.ans }));
+    const pool = [...lv.items, ...extras];
+    const picked = pool.sort(() => Math.random() - 0.5).slice(0, 5);
+    const holder = document.querySelector(`[data-basic="${li}"]`);
+    if (holder) {
+      holder.innerHTML = picked.map((it, i) => `
+        <div class="quiz-q" data-idx="${i}">
+          <div class="q-text">${it.q}</div>
+          <div class="q-opts">
+            ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
+          </div>
+          <div class="q-explain" style="display:none"></div>
+        </div>`).join("");
+    }
+  });
+}
+
 function renderBasic() {
   $("basicList").innerHTML = BASIC_LEVELS.map((lv, li) => `
     <div class="card basic-level">

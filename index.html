@@ -44,6 +44,7 @@
       <div id="quickGame" class="quick-game"></div>
       <div id="quickScore" class="quick-score"></div>
       <button id="quickNext" class="btn primary" style="display:none">下一题</button>
+      <button id="quickReset" class="btn ghost" onclick="resetQuick()">🔄 换一波词</button>
     </div>
 
     <div class="card">
@@ -104,6 +105,7 @@
       <p class="muted">听发音或看单词，选出正确的读音规律，巩固学习。</p>
       <div id="phonicsQuiz"></div>
       <button class="btn primary" onclick="checkPhonics()">看答案</button>
+      <button class="btn ghost" onclick="shufflePhonics()">🔄 换一批</button>
     </div>
   </section>
 
@@ -111,8 +113,9 @@
   <section id="tab-basic" class="panel">
     <div class="card">
       <h2>🧩 英语基础练习 <span class="tag">从零开始</span></h2>
-      <p class="muted">基础差也不怕，这里的练习都是最基础的，做完你会更有信心。按难易排序，从字母、常用词开始。</p>
+      <p class="muted">基础差也不怕，这里的练习都是最基础的，做完你会更有信心。按难易排序，从字母、常用词开始。点"换一批"可随机出题反复练习。</p>
       <div id="basicList"></div>
+      <button class="btn ghost" onclick="shuffleBasic()">🔄 换一批（随机重新出题）</button>
     </div>
   </section>
 
@@ -128,8 +131,9 @@
   <section id="tab-practice" class="panel">
     <div class="card">
       <h2>✍️ 真题风格练习</h2>
-      <p class="muted">选取学位英语常考题型：单项选择、完形填空、阅读理解、翻译。做完看解析。</p>
+      <p class="muted">选取学位英语常考题型：单项选择、完形填空、阅读理解、翻译。做完看解析，换一批可随机重排。</p>
       <div id="practiceList"></div>
+      <button class="btn ghost" onclick="shufflePractice()">🔄 换一批（随机重排）</button>
     </div>
   </section>
 
