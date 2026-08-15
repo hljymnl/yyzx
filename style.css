@@ -138,3 +138,57 @@ main { max-width: 860px; margin: 20px auto; padding: 0 16px; }
   .logo { font-size: 16px; }
   .tab { font-size: 12px; padding: 6px 10px; }
 }
+
+/* ========== 互动模块样式 ========== */
+
+/* 闪卡 */
+.word-flash { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.flash { perspective: 800px; cursor: pointer; height: 120px; }
+.flash-inner { position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+.flash.flipped .flash-inner { transform: rotateY(180deg); }
+.flash-front, .flash-back {
+  position: absolute; inset: 0; backface-visibility: hidden;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; border-radius: 12px; padding: 8px; text-align: center;
+}
+.flash-front { background: #eef1fb; border: 2px solid #c6d0f0; }
+.flash-front .f-word { font-size: 18px; font-weight: 800; color: #2b4a8f; }
+.flash-front .f-phon { font-size: 12px; color: #888; }
+.flash-back { background: #2b4a8f; color: #fff; transform: rotateY(180deg); }
+.flash-back .f-means { font-weight: 700; font-size: 15px; }
+.flash-back .f-pos { font-size: 11px; color: #c6d0f0; }
+.flash-back .f-ex { font-size: 11px; color: #e6ecff; }
+
+/* 发音按钮 */
+.f-speak {
+  background: #ffc93c; border: none; border-radius: 50%; width: 26px; height: 26px;
+  cursor: pointer; font-size: 14px; line-height: 1; padding: 0;
+}
+.f-speak:hover { background: #ffd966; }
+
+/* 速测 */
+.quick-game { }
+.quick-q { }
+.quick-mean { font-size: 20px; font-weight: 700; color: #2b4a8f; margin-bottom: 12px; text-align: center; }
+.quick-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.qo {
+  border: 2px solid #c6d0f0; background: #f8faff; border-radius: 10px;
+  padding: 14px; font-size: 16px; cursor: pointer; font-weight: 600; color: #222;
+  transition: background .2s;
+}
+.qo:hover:not(:disabled) { background: #e7edff; border-color: #2b4a8f; }
+.qo:disabled { cursor: default; }
+.qo.qo-right { background: #d9f6e3; border-color: #2ea44f; }
+.qo.qo-wrong { background: #ffe3e3; border-color: #d73a49; }
+.quick-fb { margin-top: 10px; font-size: 14px; text-align: center; min-height: 20px; }
+.quick-score { font-size: 15px; font-weight: 700; color: #2b4a8f; margin: 10px 0 0; text-align: right; }
+.quick-done { padding: 16px; border-radius: 10px; background: #eef7f0; color: #2ea44f; font-size: 16px; text-align: center; }
+.quick-done.warn { background: #fff7df; color: #8a6200; }
+
+/* 阅读朗读 */
+.r-btnw { display: block; margin-top: 8px; }
+.r-speak {
+  background: #2b4a8f; color: #fff; border: none; border-radius: 16px;
+  padding: 7px 16px; font-size: 13px; cursor: pointer;
+}
+.r-speak:hover { background: #3a5cb0; }

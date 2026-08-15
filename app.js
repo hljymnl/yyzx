@@ -25,6 +25,34 @@ function getCheckins() {
 function saveCheckins(c) { localStorage.setItem(LS_KEY, JSON.stringify(c)); }
 
 // ---------- 今日学习 ----------
+let fastRound = 0; // 当前速测轮次
+let fastScore = 0;  // 得分
+let fastWrong = []; // 错题收集
+
+function speak(word) {
+  // 页面语音合成，读单词发音
+  try {
+    if (!window.speechSynthesis) return;
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = "en-US";
+    u.rate = 0.85;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
+function speakRead() {
+  const txt = window._curRead || "";
+  try {
+    if (!window.speechSynthesis || !txt) return;
+    const u = new SpeechSynthesisUtterance(txt);
+    u.lang = "en-US";
+    u.rate = 0.9;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
 function renderToday() {
   const idx = dayIndex() % WORD_DAYS.length;
   const dayData = WORD_DAYS[idx];
@@ -35,30 +63,106 @@ function renderToday() {
   const now = new Date();
   $("todayDate").textContent = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 · 组别：${dayData.level==='core'?'核心':dayData.level==='high'?'高频':'进阶'}词`;
 
-  // 单词
+  // 单词 → 可翻转卡片（点击正面翻到反面看释义+发音）
   $("todayWords").innerHTML = dayData.words.map(w => `
-    <div class="word-item">
-      <div class="w-head">
-        <span class="w-word">${w.w}</span>
-        <span class="w-phon">${w.ph}</span>
-        <span class="w-pos">${w.pos}</span>
+    <div class="flash" data-word="${w.w}">
+      <div class="flash-inner">
+        <div class="flash-front" onclick="flipCard(this)">
+          <span class="f-word">${w.w}</span>
+          <span class="f-phon">${w.ph}</span>
+          <button class="f-speak" title="听发音" onclick="event.stopPropagation();speak('${w.w}')">🔊</button>
+        </div>
+        <div class="flash-back" onclick="flipCard(this)">
+          <span class="f-means">${w.means}</span>
+          <span class="f-pos">${w.pos}</span>
+          <span class="f-ex">${w.ex}</span>
+        </div>
       </div>
-      <div class="w-means">${w.means}</div>
-      <div class="w-example">${w.ex}</div>
     </div>`).join("");
+
+  // 速测重置
+  fastRound = 0; fastScore = 0; fastWrong = [];
+  nextQuick(dayData.words);
 
   // 语法
   const g = GRAMMAR[idx % GRAMMAR.length];
   $("todayGrammar").innerHTML = `<div class="g-title">${g.title}</div><div class="g-exp">${g.body.replace(/\n/g, "<br>")}</div><div class="g-ex">${g.ex.replace(/\n/g, "<br>")}</div>`;
 
-  // 阅读
-  $("todayReading").innerHTML = `<div class="r-en">${read.en}</div><div class="r-cn">${read.cn}</div>`;
+  // 阅读 → 可点击切换“英文/中文”
+  $("todayReading").innerHTML = `
+    <div class="r-en">${read.en}</div>
+    <div class="r-cn">${read.cn}</div>
+    <span class="r-btnw"><button class="r-speak" onclick="speakRead()">🔊 朗读整段</button></span>`;
+  window._curRead = read.en;
+  $("todayReading").querySelector(".r-btnw").onclick = null;
+
 
   // 练习
   renderQuiz(TODAY_QUIZ, "todayQuiz", false);
 
   // 清除上次结果
   $("todayResult").innerHTML = "";
+}
+
+// 闪卡翻转
+function flipCard(el) {
+  el.closest(".flash").classList.toggle("flipped");
+}
+
+// 速测：从当日前几个单词出题（看中文选英文）
+let quickWords = [];
+function nextQuick(words) {
+  quickWords = words;
+  if (fastRound >= 5) {
+    // 结束
+    const el = $("quickGame");
+    el.innerHTML = fastWrong.length === 0
+      ? `<div class="quick-done">🏆 完美！5/5 全对，今天的词掌握得很牢！</div>`
+      : `<div class="quick-done warn">你答对了 ${fastScore}/${fastRound} 题，这些词再记一下：<br><b>${fastWrong.join("、")}</b></div>`;
+    $("quickScore").innerHTML = `得分：${fastScore}/5`;
+    $("quickNext").style.display = "none";
+    $("quickNext").textContent = "再测一轮";
+    $("quickNext").onclick = () => { fastRound=0; fastScore=0; fastWrong=[]; nextQuick(words); };
+    return;
+  }
+  const w = words[fastRound % words.length];
+  const others = words.filter(x => x.w !== w.w);
+  // 随机3个干扰项
+  const shuf = others.sort(() => Math.random()-0.5).slice(0,3);
+  const opts = [{w:w.w,means:w.means,correct:true}, ...shuf.map(x=>({w:x.w,means:x.means,correct:false}))].sort(()=>Math.random()-0.5);
+  $("quickGame").innerHTML = `
+    <div class="quick-q">
+      <div class="quick-mean">${w.means}</div>
+      <div class="quick-opts">
+        ${opts.map((o,i) => `<button class="qo" data-correct="${o.correct}" data-word="${o.w}" onclick="answerQuick(this, ${fastRound})">${o.w}</button>`).join("")}
+      </div>
+      <div id="quickFeedback" class="quick-fb"></div>
+    </div>`;
+  $("quickScore").innerHTML = `得分：${fastScore}/${fastRound}`;
+  $("quickNext").style.display = "none";
+}
+
+function answerQuick(btn, round) {
+  const fb = $("quickFeedback");
+  const correct = btn.dataset.correct === "true";
+  [...btn.closest(".quick-opts").children].forEach(b => b.disabled = true);
+  if (correct) {
+    fastScore++;
+    btn.classList.add("qo-right");
+    fb.innerHTML = `✅ 答对了！${btn.dataset.word} 就是这个意思。`;
+  } else {
+    btn.classList.add("qo-wrong");
+    // 标出正确答案
+    [...btn.closest(".quick-opts").children].forEach(b => { if(b.dataset.correct==="true") b.classList.add("qo-right"); });
+    fastWrong.push(btn.dataset.word);
+    fb.innerHTML = `❌ 答错了，正确答案是 <b>${[...btn.closest(".quick-opts").children].find(b=>b.dataset.correct==="true").dataset.word}</b>`;
+  }
+  fastRound++;
+  $("quickScore").innerHTML = `得分：${fastScore}/${fastRound}`;
+  const nb = $("quickNext");
+  nb.style.display = "block";
+  nb.textContent = fastRound >= 5 ? "看结果" : "下一题";
+  nb.onclick = () => nextQuick(quickWords);
 }
 
 function renderQuiz(items, containerId, immediate) {
@@ -133,6 +237,7 @@ function renderWordsAll() {
         <span class="w-word">${w.w}</span>
         <span class="w-phon">${w.ph}</span>
         <span class="w-pos">${w.pos}</span>
+        <button class="f-speak" title="听发音" onclick="speak('${w.w}')">🔊</button>
       </div>
       <div class="w-means">${w.means}</div>
       <div class="w-example">${w.ex}</div>
