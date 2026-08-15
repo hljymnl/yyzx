@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>辽宁学位英语 · 每日轻松学</title>
+<title>每天英语 · 从零到考试，每日轻松学</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="topbar">
-  <div class="logo">🎓 学位英语 · 每日轻松学</div>
+  <div class="logo">🌞 每天英语</div>
   <nav class="tabs">
     <button class="tab active" data-tab="today">📅 每日学习</button>
     <button class="tab" data-tab="words">📚 单词本</button>
     <button class="tab" data-tab="phonics">🔤 自然拼读</button>
     <button class="tab" data-tab="basic">🧩 基础练习</button>
+    <button class="tab" data-tab="fromzero">🌱 从零学英文</button>
     <button class="tab" data-tab="grammar">📖 语法库</button>
     <button class="tab" data-tab="practice">✍️ 真题练习</button>
     <button class="tab" data-tab="writing">📝 作文模板</button>
@@ -145,6 +146,32 @@
     </div>
   </section>
 
+  <!-- 从零学英文 -->
+  <section id="tab-fromzero" class="panel">
+    <div class="card hero">
+      <div class="hero-title">🌱 从零开始学英文</div>
+      <p class="muted">完全零基础也不怕！从最基础的日常口语到生活、商务英语，每句都带🔊慢速朗读和中文翻译。跟着念，天天练，慢慢就有感觉。</p>
+    </div>
+
+    <div class="card">
+      <h2>🗣️ 口语练习 <span class="tag">日常对话</span></h2>
+      <p class="muted">最常用的口语短句和对话，点🔊听慢速发音，大声跟读。</p>
+      <div id="fromZeroSpoken"></div>
+    </div>
+
+    <div class="card">
+      <h2>🏠 生活英语 <span class="tag">购物·吃饭·出行</span></h2>
+      <p class="muted">生活中天天遇到的英语：超市、银行、看病、租房……学会就能用。</p>
+      <div id="fromZeroLife"></div>
+    </div>
+
+    <div class="card">
+      <h2>💼 商务英语 <span class="tag">职场·邮件·开会</span></h2>
+      <p class="muted">工作要用到的英语：自我介绍、打电话、发邮件、开会、接待客户。</p>
+      <div id="fromZeroBiz"></div>
+    </div>
+  </section>
+
   <!-- 语法库 -->
   <section id="tab-grammar" class="panel">
     <div class="card">
@@ -183,7 +210,7 @@
   </section>
 </main>
 
-<footer class="footer">🎓 辽宁学位英语 · 每日轻松学 —— 每天10分钟，坚持就能过</footer>
+<footer class="footer">🌞 每天英语 —— 每天10分钟，坚持就能过</footer>
 
 <script src="data.js"></script>
 <script src="app.js"></script>

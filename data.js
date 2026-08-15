@@ -227,6 +227,7 @@ const WRITING = [
   {
     title: "观点类议论文（最常考）——万能模板",
     tpl: "标题：On (话题)\n\n开头段：\nAs we all know, (话题) has become a hot topic in our daily life. Different people hold different opinions about it.\n\n主体段（正方/反方）：\nSome people are in favor of the idea that (观点A). They think that (理由1). What's more, (理由2).\nHowever, others argue that (观点B). They believe (理由1). Moreover, (理由2).\n\n结尾段：\nIn my opinion, I am on the side of (你的观点). We should (建议). Only in this way can we (好处). In short, (总结).",
+    cn: "整篇中文意思：众所周知，（话题）已成为我们日常生活中的热门话题，不同的人对此看法不同。一些人赞同（观点A），他们认为（理由1），更重要的是（理由2）。然而，另一些人认为（观点B），他们相信（理由1），而且（理由2）。在我看来，我支持（你的观点）。我们应该（建议）。只有这样我们才能（好处）。总之，（总结）。",
     tip: "把 (话题) 这类括号内容换成具体题目就行。开头、结尾背熟直接套，主体段填两三条理由即可保底得分。"
   },
   {
@@ -237,11 +238,13 @@ const WRITING = [
   {
     title: "常见话题素材：教育",
     tpl: "常用表达：\n· Lifelong learning 终身学习\n· acquire knowledge 获取知识\n· broaden one's horizons 开阔眼界\n· be beneficial to 对……有益\n\n例句：\nLearning is not limited to school. Lifelong learning helps adults keep up with the times. It is beneficial to both personal growth and career development.",
+    cn: "学习不只限于学校。终身学习帮助成年人跟上时代。它对个人成长和职业发展都有益。",
     tip: "学位英语作文常考\"教育、科技、环保、健康、大学生活\"这几个话题，把这些主题词背熟，写作就有话说。"
   },
   {
     title: "常见话题素材：科技与手机",
     tpl: "常用表达：\n· modern technology 现代科技\n· bring convenience 带来便利\n· on the other hand 另一方面\n· be addicted to 沉迷于\n\n例句：\nSmartphones bring great convenience to our life. We can chat, study and shop online anytime. However, some people are addicted to their phones and ignore family and work. We should use technology wisely.",
+    cn: "智能手机给我们的生活带来巨大便利。我们可以随时在线聊天、学习和购物。然而，有些人沉迷于手机，忽视了家人和工作。我们应该明智地使用科技。",
     tip: "\"利弊类\"话题很常考：先说好处，再说过度使用的坏处，结尾给出建议\"合理使用\"，结构完整即可。"
   }
 ];
@@ -412,4 +415,142 @@ const SOUND_QUIZ = [
   { q: "哪个词里有'知'(dʒ)？", opts: ["A. chair 椅子", "B. China 中国", "C. job 工作", "D. much 多"], ans: 2, exp: "job 的 j 发浊音 /dʒ/；chair/China/much 发清音 /tʃ/。" },
   { q: "哪个词里有长音'啊'(ɑː)？", opts: ["A. cat 猫", "B. car 汽车", "C. cup 杯", "D. cut 切"], ans: 1, exp: "car 的 ar 发 /ɑː/；cat/cup/cut 发短音。" },
   { q: "哪个词里有'波'音(b)？", opts: ["A. pen 笔", "B. tap 轻敲", "C. big 大", "D. tip 小费"], ans: 2, exp: "big 的 b 发浊音 /b/；pen/tap/tip 发清音 /p/。" }
+];
+
+// ============ 从零学英文：口语对话 ============
+const SPOKEN = [
+  { topic: "① 打招呼", lines: [
+    { en: "Hello! How are you?", cn: "你好！你好吗？" },
+    { en: "I'm fine, thank you. And you?", cn: "我很好，谢谢。你呢？" },
+    { en: "Nice to meet you.", cn: "很高兴认识你。" },
+    { en: "How's it going?", cn: "最近怎么样？" },
+    { en: "Long time no see!", cn: "好久不见！" }
+  ]},
+  { topic: "② 自我介绍", lines: [
+    { en: "My name is Li Ming.", cn: "我叫李明。" },
+    { en: "I am from China.", cn: "我来自中国。" },
+    { en: "I am a student.", cn: "我是一名学生。" },
+    { en: "I like reading and music.", cn: "我喜欢阅读和音乐。" },
+    { en: "I am happy to meet you all.", cn: "很高兴认识大家。" }
+  ]},
+  { topic: "③ 问路", lines: [
+    { en: "Excuse me, where is the station?", cn: "打扰一下，车站在哪里？" },
+    { en: "Go straight, then turn left.", cn: "直走，然后左转。" },
+    { en: "Is it far from here?", cn: "离这里远吗？" },
+    { en: "It's about ten minutes on foot.", cn: "步行大约十分钟。" },
+    { en: "Thank you very much!", cn: "非常感谢！" }
+  ]},
+  { topic: "④ 点餐", lines: [
+    { en: "May I have the menu, please?", cn: "请给我菜单。" },
+    { en: "I would like some noodles.", cn: "我想要一些面条。" },
+    { en: "What would you like to drink?", cn: "你想喝点什么？" },
+    { en: "A cup of tea, please.", cn: "请来一杯茶。" },
+    { en: "The food is delicious.", cn: "这食物很好吃。" }
+  ]},
+  { topic: "⑤ 购物", lines: [
+    { en: "How much is this?", cn: "这个多少钱？" },
+    { en: "It's too expensive.", cn: "太贵了。" },
+    { en: "Do you have a bigger size?", cn: "有大一点的尺码吗？" },
+    { en: "Can I pay by card?", cn: "可以刷卡吗？" },
+    { en: "I'll take it. Here you are.", cn: "我要了，给你钱。" }
+  ]},
+  { topic: "⑥ 打电话", lines: [
+    { en: "Hello, may I speak to Tom?", cn: "你好，请找汤姆接电话。" },
+    { en: "This is Tom speaking.", cn: "我就是汤姆。" },
+    { en: "Can you call back later?", cn: "你能晚点再打来吗？" },
+    { en: "Sorry, wrong number.", cn: "对不起，打错了。" },
+    { en: "I'll call you back.", cn: "我待会回你电话。" }
+  ]}
+];
+
+// ============ 从零学英文：生活英语 ============
+const LIFE_EN = [
+  { topic: "🏥 看病", lines: [
+    { en: "I don't feel well.", cn: "我感觉不舒服。" },
+    { en: "I have a headache.", cn: "我头疼。" },
+    { en: "Where is the hospital?", cn: "医院在哪里？" },
+    { en: "Take this medicine three times a day.", cn: "这个药一天吃三次。" },
+    { en: "You'll get better soon.", cn: "你很快就会好起来。" }
+  ]},
+  { topic: "🏦 银行", lines: [
+    { en: "I'd like to open an account.", cn: "我想开一个账户。" },
+    { en: "I want to withdraw some money.", cn: "我想取一些钱。" },
+    { en: "What's your name, please?", cn: "请问你的名字？" },
+    { en: "Please fill in this form.", cn: "请填写这张表格。" },
+    { en: "Sign your name here.", cn: "在这里签名。" }
+  ]},
+  { topic: "🚌 出行交通", lines: [
+    { en: "Where can I take a bus?", cn: "我在哪里可以坐公交？" },
+    { en: "How much is the ticket?", cn: "车票多少钱？" },
+    { en: "Which bus goes downtown?", cn: "哪路公交去市中心？" },
+    { en: "Please stop at the next station.", cn: "请在下一站停一下。" },
+    { en: "Can I get a taxi here?", cn: "我可以在这里打车吗？" }
+  ]},
+  { topic: "🏠 租房", lines: [
+    { en: "I'm looking for a room.", cn: "我在找一间房。" },
+    { en: "How much is the rent per month?", cn: "每月租金多少？" },
+    { en: "Is the room furnished?", cn: "房间带家具吗？" },
+    { en: "Does it include water and electricity?", cn: "包含水电费吗？" },
+    { en: "When can I move in?", cn: "我什么时候可以搬进来？" }
+  ]},
+  { topic: "🛍️ 超市", lines: [
+    { en: "Where is the fruit section?", cn: "水果区在哪里？" },
+    { en: "Do you have fresh milk?", cn: "有新鲜牛奶吗？" },
+    { en: "I need a shopping bag.", cn: "我需要一个购物袋。" },
+    { en: "It's on sale this week.", cn: "这周在打折。" },
+    { en: "Can I have a receipt, please?", cn: "请给我一张收据。" }
+  ]},
+  { topic: "🌤️ 日常闲聊", lines: [
+    { en: "It's a nice day today.", cn: "今天天气真好。" },
+    { en: "It's raining outside.", cn: "外面在下雨。" },
+    { en: "What do you do for fun?", cn: "你平时喜欢做什么？" },
+    { en: "I usually go for a walk.", cn: "我通常去散步。" },
+    { en: "Have a nice day!", cn: "祝你今天愉快！" }
+  ]}
+];
+
+// ============ 从零学英文：商务英语 ============
+const BIZ_EN = [
+  { topic: "🤝 自我介绍(职场)", lines: [
+    { en: "Good morning, everyone.", cn: "大家早上好。" },
+    { en: "Let me introduce myself.", cn: "让我自我介绍一下。" },
+    { en: "I work in the sales department.", cn: "我在销售部工作。" },
+    { en: "I have five years of experience.", cn: "我有五年的工作经验。" },
+    { en: "I'm glad to work with you.", cn: "很高兴与你们共事。" }
+  ]},
+  { topic: "📞 商务电话", lines: [
+    { en: "This is Lily from ABC Company.", cn: "我是ABC公司的莉莉。" },
+    { en: "I'm calling about the meeting.", cn: "我打电话是关于会议的事。" },
+    { en: "Could you put me through to Mr. Wang?", cn: "能帮我接王先生吗？" },
+    { en: "He is in a meeting right now.", cn: "他现在正在开会。" },
+    { en: "I'll call you back tomorrow.", cn: "我明天再给你回电。" }
+  ]},
+  { topic: "📧 商务邮件", lines: [
+    { en: "I am writing to you about the order.", cn: "我写信是为了订单的事。" },
+    { en: "Please find the attached file.", cn: "请查收附件。" },
+    { en: "Thank you for your quick reply.", cn: "感谢你的快速回复。" },
+    { en: "Looking forward to your reply.", cn: "期待你的回复。" },
+    { en: "Best regards, John.", cn: "此致敬意，约翰。" }
+  ]},
+  { topic: "📊 开会", lines: [
+    { en: "Shall we start the meeting?", cn: "我们开始开会吧？" },
+    { en: "Let's go over the plan.", cn: "我们过一遍计划。" },
+    { en: "What's your opinion?", cn: "你的意见是什么？" },
+    { en: "I agree with you.", cn: "我同意你的看法。" },
+    { en: "Let's move on to the next topic.", cn: "我们进入下一个主题。" }
+  ]},
+  { topic: "🛫 接待客户", lines: [
+    { en: "Welcome to our company.", cn: "欢迎来到我们公司。" },
+    { en: "Did you have a good flight?", cn: "你旅途顺利吗？" },
+    { en: "Let me show you around.", cn: "让我带你参观一下。" },
+    { en: "Would you like some coffee or tea?", cn: "你想喝咖啡还是茶？" },
+    { en: "Feel free to ask any questions.", cn: "有问题尽管问。" }
+  ]},
+  { topic: "🤝 谈判与合作", lines: [
+    { en: "We'd like to cooperate with you.", cn: "我们想与你们合作。" },
+    { en: "What's your best price?", cn: "你们的最低价是多少？" },
+    { en: "Can we make a deal?", cn: "我们能谈成这笔生意吗？" },
+    { en: "Let's sign the contract.", cn: "我们来签合同。" },
+    { en: "It's a win-win situation.", cn: "这是一个双赢的局面。" }
+  ]}
 ];

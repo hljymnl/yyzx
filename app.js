@@ -402,6 +402,37 @@ function renderWordsAll() {
     </div>`).join("");
 }
 
+// ---------- 从零学英文 ----------
+function renderFromZero() {
+  const sceneHtml = group => group.map(sc => `
+    <div class="fz-scene">
+      <div class="fz-topic">${sc.topic}</div>
+      ${sc.lines.map((ln, i) => `
+        <div class="fz-line">
+          <span class="fz-en">${ln.en}</span>
+          <span class="fz-cn">${ln.cn}</span>
+          <button class="link-speak" onclick="sayExFromData(this)" data-en="${ln.en}">🔊</button>
+        </div>`).join("")}
+    </div>`).join("");
+  $("fromZeroSpoken").innerHTML = sceneHtml(SPOKEN);
+  $("fromZeroLife").innerHTML = sceneHtml(LIFE_EN);
+  $("fromZeroBiz").innerHTML = sceneHtml(BIZ_EN);
+}
+
+// 朗读：从 data-en 属性读英文（避免中文干扰）
+function sayExFromData(el) {
+  const en = el && el.getAttribute && el.getAttribute("data-en");
+  if (!en) return;
+  try {
+    if (!window.speechSynthesis) return;
+    const u = new SpeechSynthesisUtterance(en);
+    u.lang = "en-US";
+    u.rate = SPEAK_RATE;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
 // ---------- 语法库 ----------
 function renderGrammar() {
   $("grammarList").innerHTML = GRAMMAR.map(g => `
@@ -505,6 +536,7 @@ function renderWriting() {
         <button class="link-speak" title="朗读范文" onclick="sayTpl(this)" data-i="${WRITING.indexOf(w)}">🔊 朗读</button>
       </h3>
       <div class="w-tpl">${w.tpl}</div>
+      ${w.cn ? `<details class="w-cn"><summary>👁 查看中文翻译</summary><div class="w-cn-body">${w.cn.replace(/\n/g,"<br>")}</div></details>` : ""}
       <div class="w-tip">💡 ${w.tip}</div>
     </div>`).join("");
 }
@@ -821,6 +853,7 @@ window.addEventListener("DOMContentLoaded", () => {
   renderGrammar();
   renderPractice();
   renderWriting();
+  renderFromZero();
   renderCalendar();
 
   $("todaySubmit").addEventListener("click", checkTodayQuiz);
