@@ -277,7 +277,7 @@ function initTabs() {
 }
 
 // ---------- 按钮绑定 ----------
-$(window).addEventListener("load", () => {
+window.addEventListener("DOMContentLoaded", () => {
   initTabs();
   renderToday();
   renderWordsAll();
