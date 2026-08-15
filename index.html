@@ -84,6 +84,32 @@
   <!-- 自然拼读 -->
   <section id="tab-phonics" class="panel">
     <div class="card">
+      <h2>🔠 单音基础 <span class="tag">逐个示范音</span></h2>
+      <p class="muted">自然拼读的根基是"单音"。把英语最常用的音标逐个放出来，<b>点🔊听示范音</b>，再看例词怎么拼读。每天学几个音，反复听、跟读，很快就能"见词能读"。</p>
+      <div class="phonics-tip">💡 <b>练习步骤：</b>① 点🔊听单个音 → ② 跟读例词 → ③ 做下面的"听音辨词"练习。</div>
+
+      <h3 style="color:#2b4a8f;margin:10px 0;">🔻 短元音 <span style="font-size:13px;color:#888;">(短促有力)</span></h3>
+      <div id="phShort" class="sound-grid"></div>
+
+      <h3 style="color:#2b4a8f;margin:14px 0;">🔺 长元音 / 双元音 <span style="font-size:13px;color:#888;">(拖长或滑动)</span></h3>
+      <div id="phLong" class="sound-grid"></div>
+
+      <h3 style="color:#2b4a8f;margin:14px 0;">🎤 清辅音 <span style="font-size:13px;color:#888;">(声带不振动)</span></h3>
+      <div id="phVoiceless" class="sound-grid"></div>
+
+      <h3 style="color:#2b4a8f;margin:14px 0;">🎤 浊辅音 <span style="font-size:13px;color:#888;">(声带振动)</span></h3>
+      <div id="phVoiced" class="sound-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2>🔁 单音听辨练习 <span class="tag">听音选词</span></h2>
+      <p class="muted">听示范音，选出含有这个音的单词。检验你是否真的听清了每个单音。</p>
+      <div id="soundQuiz"></div>
+      <button class="btn primary" onclick="checkSoundQuiz()">看答案</button>
+      <button class="btn ghost" onclick="shuffleSoundQuiz()">🔄 换一批</button>
+    </div>
+
+    <div class="card">
       <h2>🔤 自然拼读（Phonics）</h2>
       <p class="muted">基础差就从这里开始！自然拼读教你"看到一个词就能读出来"。跟着学音标和字母组合发音，点喇叭听示范。</p>
       <div class="phonics-tip">💡 <b>怎么学：</b>先看发音规律，再点🔊听发音，最后自己练读。每天学1-2条就够。</div>

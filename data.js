@@ -349,3 +349,67 @@ const BASIC_LEVELS = [
     ]
   }
 ];
+
+// ============ 单音基础（示范音） ============
+// sound: 示范音（读单个音标）, tip: 中文谐音+口型口诀, word: 例词(读单词)
+// 用逗趣中文谐音，让零基础也能秒懂发音
+const SOUNDS_SHORT = [
+  { sym: "/i/", tip: "😜 像说'衣服'的衣，嘴角咧开", word: "it 它, big 大, sit 坐", sound: "it" },
+  { sym: "/e/", tip: "😬 像说'诶哎'，嘴扁扁的", word: "egg 蛋, red 红, pen 笔", sound: "egg" },
+  { sym: "/æ/", tip: "😮 张大嘴喊'啊'，像被吓到", word: "cat 猫, hat 帽, apple 苹果", sound: "cat" },
+  { sym: "/ɒ/", tip: "🅾️ 圆嘴说'哦'，像恍然大悟", word: "box 盒, dog 狗, hot 热", sound: "box" },
+  { sym: "/ʌ/", tip: "😲 短促的'阿'，像被轻撞一下", word: "cup 杯, bus 公交, up 向上", sound: "cup" },
+  { sym: "/ʊ/", tip: "😯 短'呜'，像脚被踩到", word: "book 书, good 好, foot 脚", sound: "book" }
+];
+
+const SOUNDS_LONG = [
+  { sym: "/iː/", tip: "🙂 长'一'，像笑得很开", word: "see 看见, tea 茶, three 三", sound: "see" },
+  { sym: "/ɑː/", tip: "😧 张大嘴长'啊'，像看牙医", word: "car 车, far 远, are 是", sound: "car" },
+  { sym: "/ɔː/", tip: "🤔 圆嘴长'哦'，像想事情", word: "door 门, four 四, more 更多", sound: "door" },
+  { sym: "/uː/", tip: "🙃 嘟嘴长'呜'，像吹口哨", word: "school 学校, food 食物, blue 蓝", sound: "school" },
+  { sym: "/ɜː/", tip: "😆 卷舌长'饿'，像很饿", word: "her 她的, work 工作, girl 女孩", sound: "girl" },
+  { sym: "/eɪ/", tip: "😄 '诶→衣'连起来，像'妹'的尾音", word: "day 天, play 玩, rain 雨", sound: "day" },
+  { sym: "/aɪ/", tip: "😜 '啊→衣'连起来，像说'爱'", word: "my 我的, fly 飞, time 时间", sound: "my" },
+  { sym: "/aʊ/", tip: "😲 '啊→屋'连起来，像说'傲'", word: "now 现在, cow 牛, house 房子", sound: "now" },
+  { sym: "/əʊ/", tip: "😊 '饿→屋'轻轻滑，像说'欧'", word: "go 去, no 不, home 家", sound: "go" }
+];
+
+const SOUNDS_VOICELESS = [
+  { sym: "/p/", tip: "💨 像'吹蜡烛'的'普'（不振动）", word: "pen 笔, map 地图, top 顶部", sound: "pen" },
+  { sym: "/t/", tip: "💨 像'特'，舌尖弹上牙", word: "tea 茶, ten 十, hot 热", sound: "tea" },
+  { sym: "/k/", tip: "💨 像'克'，像喉咙咳痰", word: "cat 猫, black 黑, key 钥匙", sound: "key" },
+  { sym: "/f/", tip: "💨 像'夫'，上牙咬下唇吹气", word: "fish 鱼, four 四, off 离开", sound: "fish" },
+  { sym: "/s/", tip: "💨 像'丝'，像蛇吐信", word: "see 看, six 六, bus 公交", sound: "six" },
+  { sym: "/ʃ/", tip: "😴 像'嘘'，让别人安静", word: "she 她, fish 鱼, shop 商店", sound: "she" },
+  { sym: "/θ/", tip: "😝 吐舌头说'思'，像大舌头", word: "three 三, thank 谢谢, thin 瘦", sound: "three" },
+  { sym: "/tʃ/", tip: "😋 像'吃'！简单直接", word: "chair 椅子, China 中国, much 多", sound: "chair" }
+];
+
+const SOUNDS_VOICED = [
+  { sym: "/b/", tip: "🎵 像'波'，声带会震(跟p对照)", word: "box 盒, baby 婴儿, big 大", sound: "big" },
+  { sym: "/d/", tip: "🎵 像'得'，声带会震(跟t对照)", word: "dog 狗, day 天, red 红", sound: "dog" },
+  { sym: "/ɡ/", tip: "🎵 像'鸽'，声带会震(跟k对照)", word: "go 去, get 得到, big 大", sound: "go" },
+  { sym: "/v/", tip: "🎵 像'夫'但声带震，上牙咬下唇", word: "very 很, five 五, love 爱", sound: "very" },
+  { sym: "/z/", tip: "🎵 像'兹'，像蜜蜂嗡嗡", word: "zoo 动物园, zero 零, is 是", sound: "zoo" },
+  { sym: "/ʒ/", tip: "🎵 像'日'，声带震得像含热糖", word: "usually 通常, pleasure 愉快", sound: "usually" },
+  { sym: "/ð/", tip: "🎵 吐舌头说'则'，跟θ对照", word: "this 这, that 那, they 他们", sound: "this" },
+  { sym: "/dʒ/", tip: "🎵 像'知'，'之'加一点振动", word: "job 工作, orange 桔子, jump 跳", sound: "job" },
+  { sym: "/m/", tip: "😗 闭上嘴'嗯'，像吃好吃的东西", word: "my 我的, mother 妈妈, time 时间", sound: "my" },
+  { sym: "/n/", tip: "😌 舌尖顶上牙'嗯'，像思考", word: "no 不, name 名字, ten 十", sound: "name" },
+  { sym: "/l/", tip: "😛 舌尖顶上牙后'乐'，像舔到糖", word: "like 喜欢, love 爱, school 学校", sound: "like" },
+  { sym: "/r/", tip: "😜 卷舌'日'，像外国人说中文", word: "red 红, run 跑, right 右", sound: "red" }
+];
+
+// 单音听辨练习：听音辨词（更简单，带中文提示）
+const SOUND_QUIZ = [
+  { q: "哪个词里有长音'一'（像笑开的iː）？", opts: ["A. big 大", "B. see 看见", "C. it 它", "D. sit 坐"], ans: 1, exp: "see 发 /siː/ 长音；big/it/sit 都发短音 /ɪ/。" },
+  { q: "哪个词里有短音'啊'(æ)？", opts: ["A. cat 猫", "B. cake 蛋糕", "C. name 名字", "D. day 天"], ans: 0, exp: "cat 的 a 发短音 /æ/；cake/name/day 发 /eɪ/。" },
+  { q: "哪个词里有'嘘'音(ʃ)？", opts: ["A. three 三", "B. ship 船", "C. this 这", "D. dog 狗"], ans: 1, exp: "ship 的 sh 发 /ʃ/（嘘）。" },
+  { q: "哪个词里有'则'音(ð,吐舌)？", opts: ["A. thank 谢谢", "B. three 三", "C. this 这", "D. thin 瘦"], ans: 2, exp: "this 的 th 发浊音 /ð/；thank/three/thin 发清音 /θ/。" },
+  { q: "哪个词里有长音'呜'(uː)？", opts: ["A. book 书", "B. foot 脚", "C. food 食物", "D. good 好"], ans: 2, exp: "food 的 oo 发长音 /uː/；book/foot/good 发短音 /ʊ/。" },
+  { q: "哪个词里有'诶衣'(eɪ)？", opts: ["A. egg 蛋", "B. red 红", "C. day 天", "D. pen 笔"], ans: 2, exp: "day 的 ay 发 /eɪ/；egg/red/pen 发短音 /e/。" },
+  { q: "哪个词里有'思'(θ,吐舌)？", opts: ["A. this 这", "B. three 三", "C. they 他们", "D. father 父亲"], ans: 1, exp: "three 的 th 发清音 /θ/；this/they/father 发浊音 /ð/。" },
+  { q: "哪个词里有'知'(dʒ)？", opts: ["A. chair 椅子", "B. China 中国", "C. job 工作", "D. much 多"], ans: 2, exp: "job 的 j 发浊音 /dʒ/；chair/China/much 发清音 /tʃ/。" },
+  { q: "哪个词里有长音'啊'(ɑː)？", opts: ["A. cat 猫", "B. car 汽车", "C. cup 杯", "D. cut 切"], ans: 1, exp: "car 的 ar 发 /ɑː/；cat/cup/cut 发短音。" },
+  { q: "哪个词里有'波'音(b)？", opts: ["A. pen 笔", "B. tap 轻敲", "C. big 大", "D. tip 小费"], ans: 2, exp: "big 的 b 发浊音 /b/；pen/tap/tip 发清音 /p/。" }
+];

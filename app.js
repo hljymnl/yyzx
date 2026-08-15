@@ -53,6 +53,24 @@ function speakRead() {
   } catch(e) {}
 }
 
+// 通用：从一段“英文 + 中文”混合文本中提取英文并朗读
+function sayEx(el) {
+  if (!el || !el.textContent) return;
+  // 读容器文本开头连续的英文部分（按钮文字在尾部不影响）
+  const txt = el.textContent.trim();
+  const m = txt.match(/^[A-Za-z0-9 .,'!?"();:/-]+/);
+  const en = (m ? m[0] : txt).trim();
+  if (!en) return;
+  try {
+    if (!window.speechSynthesis) return;
+    const u = new SpeechSynthesisUtterance(en);
+    u.lang = "en-US";
+    u.rate = 0.85;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  } catch(e) {}
+}
+
 function renderToday() {
   const idx = dayIndex() % WORD_DAYS.length;
   const dayData = WORD_DAYS[idx];
@@ -75,7 +93,7 @@ function renderToday() {
         <div class="flash-back" onclick="flipCard(this)">
           <span class="f-means">${w.means}</span>
           <span class="f-pos">${w.pos}</span>
-          <span class="f-ex">${w.ex}</span>
+          <span class="f-ex">${w.ex} <button class="link-speak" title="朗读例句" onclick="event.stopPropagation();sayEx(this)">🔊 读例句</button></span>
         </div>
       </div>
     </div>`).join("");
@@ -86,7 +104,7 @@ function renderToday() {
 
   // 语法
   const g = GRAMMAR[idx % GRAMMAR.length];
-  $("todayGrammar").innerHTML = `<div class="g-title">${g.title}</div><div class="g-exp">${g.body.replace(/\n/g, "<br>")}</div><div class="g-ex">${g.ex.replace(/\n/g, "<br>")}</div>`;
+  $("todayGrammar").innerHTML = `<div class="g-title">${g.title}</div><div class="g-exp">${g.body.replace(/\n/g, "<br>")}</div><div class="g-ex">${exLinesHtml(g.ex)}</div>`;
 
   // 阅读 → 可点击切换“英文/中文”
   $("todayReading").innerHTML = `
@@ -249,7 +267,7 @@ function renderWordsAll() {
         <button class="f-speak" title="听发音" onclick="speak('${w.w}')">🔊</button>
       </div>
       <div class="w-means">${w.means}</div>
-      <div class="w-example">${w.ex}</div>
+      <div class="w-example">${w.ex} <button class="link-speak" title="朗读例句" onclick="sayEx(this)">🔊 读例句</button></div>
     </div>`).join("");
 }
 
@@ -259,7 +277,7 @@ function renderGrammar() {
     <div class="g-item">
       <h3>${g.title}</h3>
       <div class="g-body">${g.body.replace(/\n/g,"<br>")}</div>
-      <div class="g-ex">${g.ex.replace(/\n/g,"<br>")}</div>
+      <div class="g-ex">${exLinesHtml(g.ex)}</div>
     </div>`).join("");
 }
 
@@ -352,16 +370,46 @@ function shufflePractice() {
 function renderWriting() {
   $("writingList").innerHTML = WRITING.map(w => `
     <div class="w-item">
-      <h3>${w.title}</h3>
+      <h3>${w.title}
+        <button class="link-speak" title="朗读范文" onclick="sayTpl(this)" data-i="${WRITING.indexOf(w)}">🔊 朗读</button>
+      </h3>
       <div class="w-tpl">${w.tpl}</div>
       <div class="w-tip">💡 ${w.tip}</div>
     </div>`).join("");
+}
+
+// 朗读作文范文：提取模板中的英文句连读
+function sayTpl(el) {
+  const i = Number(el.getAttribute && el.getAttribute("data-i"));
+  const w = WRITING[i];
+  if (!w) return;
+  try {
+    if (!window.speechSynthesis) return;
+    const u = new SpeechSynthesisUtterance(w.tpl.replace(/[\u4e00-\u9fff·…\d（）]/g, " "));
+    u.lang = "en-US"; u.rate = 0.9;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+  } catch(e) {}
 }
 
 // ---------- 自然拼读 ----------
 function renderPhonics() {
   $("phonicsIntro").innerHTML = PHONICS_INTRO.map(p => `
     <div class="ph-intro"><b>${p.t}</b> — ${p.d}</div>`).join("");
+
+  // ---- 单音基础：示范音 ----
+  const soundCard = v => `
+    <div class="ph-card sound-card">
+      <div class="ph-sym">${v.sym}</div>
+      <div class="ph-tip">${v.tip}</div>
+      <div class="ph-ex">${v.word}</div>
+      <button class="ph-speak" onclick="speakSound('${v.sound}','${v.sym}')">🔊 听示范</button>
+    </div>`;
+  $("phShort").innerHTML = SOUNDS_SHORT.map(soundCard).join("");
+  $("phLong").innerHTML = SOUNDS_LONG.map(soundCard).join("");
+  $("phVoiceless").innerHTML = SOUNDS_VOICELESS.map(soundCard).join("");
+  $("phVoiced").innerHTML = SOUNDS_VOICED.map(soundCard).join("");
+  renderSoundQuiz();
 
   // 元音
   $("phonicsVowels").innerHTML = PHONICS_VOWELS.map(v => `
@@ -383,6 +431,57 @@ function renderPhonics() {
 
   // 练习（交互）
   $("phonicsQuiz").innerHTML = PHONICS_QUIZ.map((it, i) => `
+    <div class="quiz-q" data-idx="${i}">
+      <div class="q-text">${it.q}</div>
+      <div class="q-opts">
+        ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
+      </div>
+      <div class="q-explain"></div>
+    </div>`).join("");
+}
+
+// 读单个示范音（先读音标音，再读例词）
+function speakSound(word, sym) {
+  try {
+    if (!window.speechSynthesis) return;
+    window.speechSynthesis.cancel();
+    const u1 = new SpeechSynthesisUtterance(sym);
+    u1.lang = "en-US"; u1.rate = 0.7;
+    const u2 = new SpeechSynthesisUtterance(word);
+    u2.lang = "en-US"; u2.rate = 0.8;
+    u1.onend = () => { try { window.speechSynthesis.speak(u2); } catch(e){} };
+    window.speechSynthesis.speak(u1);
+  } catch(e) {}
+}
+
+// ---- 单音听辨练习 ----
+function renderSoundQuiz() {
+  $("soundQuiz").innerHTML = SOUND_QUIZ.map((it, i) => `
+    <div class="quiz-q" data-idx="${i}">
+      <div class="q-text">${it.q}</div>
+      <div class="q-opts">
+        ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
+      </div>
+      <div class="q-explain"></div>
+    </div>`).join("");
+}
+
+function checkSoundQuiz() {
+  document.querySelectorAll("#soundQuiz .quiz-q").forEach((q, i) => {
+    const it = SOUND_QUIZ[i];
+    const exp = q.querySelector(".q-explain");
+    exp.style.display = "block";
+    const opts = q.querySelectorAll(".q-opt");
+    opts.forEach((o, j) => { o.classList.remove("correct","wrong"); if (j === it.ans) o.classList.add("correct"); });
+    const chosen = q.querySelector(".q-opt.selected");
+    if (chosen && Number(chosen.dataset.idx) !== it.ans) chosen.classList.add("wrong");
+    exp.innerHTML = `💡 ${it.exp}`;
+  });
+}
+
+function shuffleSoundQuiz() {
+  const shuffled = [...SOUND_QUIZ].sort(() => Math.random() - 0.5);
+  $("soundQuiz").innerHTML = shuffled.map((it, i) => `
     <div class="quiz-q" data-idx="${i}">
       <div class="q-text">${it.q}</div>
       <div class="q-opts">
@@ -419,6 +518,18 @@ function shufflePhonics() {
 }
 
 // ---------- 基础练习 ----------
+// 把例句按行拆分，英文开头的行自动加“🔊 读句”按钮
+function exLinesHtml(ex) {
+  return String(ex).split(/\n/).map(line => {
+    const t = line.trim();
+    if (!t) return "";
+    if (/^[A-Za-z0-9]/.test(t) && /[A-Za-z]{2}/.test(t)) {
+      return `<div class="exline">${t} <button class="link-speak" onclick="sayEx(this)">🔊 读句</button></div>`;
+    }
+    return `<div class="exline">${t}</div>`;
+  }).join("");
+}
+
 // 补充题库（换一批时随机从中抽取，增加词汇量）
 const BASIC_EXTRA = [
   // 字母
