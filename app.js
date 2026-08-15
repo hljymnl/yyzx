@@ -328,6 +328,87 @@ function renderWriting() {
     </div>`).join("");
 }
 
+// ---------- 自然拼读 ----------
+function renderPhonics() {
+  $("phonicsIntro").innerHTML = PHONICS_INTRO.map(p => `
+    <div class="ph-intro"><b>${p.t}</b> — ${p.d}</div>`).join("");
+
+  // 元音
+  $("phonicsVowels").innerHTML = PHONICS_VOWELS.map(v => `
+    <div class="ph-card">
+      <div class="ph-sym">${v.sym}</div>
+      <div class="ph-phon">${v.phon}</div>
+      <div class="ph-ex">${v.ex}</div>
+      <button class="ph-speak" onclick="speak('${v.sound}')">🔊 听发音</button>
+    </div>`).join("");
+
+  // 组合
+  $("phonicsCombos").innerHTML = PHONICS_COMBOS.map(v => `
+    <div class="ph-card">
+      <div class="ph-sym">${v.sym}</div>
+      <div class="ph-phon">${v.phon}</div>
+      <div class="ph-ex">${v.ex}</div>
+      <button class="ph-speak" onclick="speak('${v.sound}')">🔊 听发音</button>
+    </div>`).join("");
+
+  // 练习（交互）
+  $("phonicsQuiz").innerHTML = PHONICS_QUIZ.map((it, i) => `
+    <div class="quiz-q" data-idx="${i}">
+      <div class="q-text">${it.q}</div>
+      <div class="q-opts">
+        ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
+      </div>
+      <div class="q-explain"></div>
+    </div>`).join("");
+}
+
+function checkPhonics() {
+  document.querySelectorAll("#phonicsQuiz .quiz-q").forEach((q, i) => {
+    const it = PHONICS_QUIZ[i];
+    const exp = q.querySelector(".q-explain");
+    exp.style.display = "block";
+    const opts = q.querySelectorAll(".q-opt");
+    opts.forEach((o, j) => { o.classList.remove("correct","wrong"); if (j === it.ans) o.classList.add("correct"); });
+    const chosen = q.querySelector(".q-opt.selected");
+    if (chosen && Number(chosen.dataset.idx) !== it.ans) chosen.classList.add("wrong");
+    exp.innerHTML = `💡 ${it.exp}`;
+  });
+}
+
+// ---------- 基础练习 ----------
+function renderBasic() {
+  $("basicList").innerHTML = BASIC_LEVELS.map((lv, li) => `
+    <div class="card basic-level">
+      <h3>${lv.title}</h3>
+      <p class="muted">${lv.intro}</p>
+      <div data-basic="${li}"></div>
+      <button class="btn primary" onclick="checkBasic(${li})">查看答案</button>
+    </div>`).join("");
+
+  BASIC_LEVELS.forEach((lv, li) => {
+    const holder = document.querySelector(`[data-basic="${li}"]`);
+    holder.innerHTML = lv.items.map((it, i) => `
+      <div class="quiz-q" data-idx="${i}">
+        <div class="q-text">${it.q}</div>
+        <div class="q-opts">
+          ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
+        </div>
+        <div class="q-explain" style="display:${it.exp?"none":"none"}"></div>
+      </div>`).join("");
+  });
+}
+
+function checkBasic(li) {
+  const lv = BASIC_LEVELS[li];
+  document.querySelectorAll(`[data-basic="${li}"] .quiz-q`).forEach((q, i) => {
+    const it = lv.items[i];
+    const opts = q.querySelectorAll(".q-opt");
+    opts.forEach((o, j) => { o.classList.remove("correct","wrong"); if (j === it.ans) o.classList.add("correct"); });
+    const chosen = q.querySelector(".q-opt.selected");
+    if (chosen && Number(chosen.dataset.idx) !== it.ans) chosen.classList.add("wrong");
+  });
+}
+
 // ---------- 打卡日历 ----------
 function renderCalendar() {
   const c = getCheckins();
@@ -386,6 +467,8 @@ window.addEventListener("DOMContentLoaded", () => {
   initTabs();
   renderToday();
   renderWordsAll();
+  renderPhonics();
+  renderBasic();
   renderGrammar();
   renderPractice();
   renderWriting();

@@ -12,6 +12,8 @@
   <nav class="tabs">
     <button class="tab active" data-tab="today">📅 每日学习</button>
     <button class="tab" data-tab="words">📚 单词本</button>
+    <button class="tab" data-tab="phonics">🔤 自然拼读</button>
+    <button class="tab" data-tab="basic">🧩 基础练习</button>
     <button class="tab" data-tab="grammar">📖 语法库</button>
     <button class="tab" data-tab="practice">✍️ 真题练习</button>
     <button class="tab" data-tab="writing">📝 作文模板</button>
@@ -75,6 +77,42 @@
         <button class="wf" data-wf="adv">进阶</button>
       </div>
       <div id="wordsAll" class="word-grid"></div>
+    </div>
+  </section>
+
+  <!-- 自然拼读 -->
+  <section id="tab-phonics" class="panel">
+    <div class="card">
+      <h2>🔤 自然拼读（Phonics）</h2>
+      <p class="muted">基础差就从这里开始！自然拼读教你"看到一个词就能读出来"。跟着学音标和字母组合发音，点喇叭听示范。</p>
+      <div class="phonics-tip">💡 <b>怎么学：</b>先看发音规律，再点🔊听发音，最后自己练读。每天学1-2条就够。</div>
+      <div id="phonicsIntro" class="phonics-intro"></div>
+    </div>
+
+    <div class="card">
+      <h2>🔠 元音字母发音 <span class="tag">a e i o u</span></h2>
+      <div id="phonicsVowels" class="phonics-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2>🔡 常见字母组合 <span class="tag">拼读规律</span></h2>
+      <div id="phonicsCombos" class="phonics-grid"></div>
+    </div>
+
+    <div class="card">
+      <h2>🎯 拼读小练习 <span class="tag">选读音</span></h2>
+      <p class="muted">听发音或看单词，选出正确的读音规律，巩固学习。</p>
+      <div id="phonicsQuiz"></div>
+      <button class="btn primary" onclick="checkPhonics()">看答案</button>
+    </div>
+  </section>
+
+  <!-- 基础练习 -->
+  <section id="tab-basic" class="panel">
+    <div class="card">
+      <h2>🧩 英语基础练习 <span class="tag">从零开始</span></h2>
+      <p class="muted">基础差也不怕，这里的练习都是最基础的，做完你会更有信心。按难易排序，从字母、常用词开始。</p>
+      <div id="basicList"></div>
     </div>
   </section>
 

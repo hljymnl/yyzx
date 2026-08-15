@@ -245,3 +245,107 @@ const WRITING = [
     tip: "\"利弊类\"话题很常考：先说好处，再说过度使用的坏处，结尾给出建议\"合理使用\"，结构完整即可。"
   }
 ];
+
+// ============ 自然拼读 ============
+const PHONICS_INTRO = [
+  { t: "什么是自然拼读？", d: "英语单词由「音」组成。自然拼读教你：看到字母或字母组合，就知道发什么音，从而「见词能读、听音能写」。" },
+  { t: "26个字母的读音", d: "先熟练 ABC…Z 的读音，这是基础。点下方喇叭可听示范。" },
+  { t: "元音 vs 辅音", d: "元音字母：a、e、i、o、u（发音响亮）；辅音字母：其余21个（发音受阻）。单词里的「元音」就像汉字里的声母韵母，是核心。" },
+  { t: "学习建议", d: "每天学1-2个发音规律，配合当天的单词练习，边学边用，最有效。" }
+];
+
+const PHONICS_VOWELS = [
+  { sym: "a", phon: "/æ/", ex: "apple 苹果, cat 猫, hat 帽子", sound: "apple" },
+  { sym: "e", phon: "/e/", ex: "egg 蛋, pen 钢笔, red 红色", sound: "egg" },
+  { sym: "i", phon: "/ɪ/", ex: "it 它, fish 鱼, big 大的", sound: "fish" },
+  { sym: "o", phon: "/ɒ/", ex: "box 盒子, dog 狗, hot 热", sound: "box" },
+  { sym: "u", phon: "/ʌ/", ex: "up 向上, cup 杯子, bus 公交车", sound: "cup" }
+];
+
+const PHONICS_COMBOS = [
+  { sym: "ee / ea", phon: "/iː/", ex: "see 看见, tea 茶, three 三", sound: "see" },
+  { sym: "oo", phon: "/uː/", ex: "book 书, good 好, food 食物", sound: "book" },
+  { sym: "sh", phon: "/ʃ/", ex: "she 她, fish 鱼, shop 商店", sound: "she" },
+  { sym: "ch", phon: "/tʃ/", ex: "chair 椅子, much 许多, China 中国", sound: "chair" },
+  { sym: "th", phon: "/θ/ 或 /ð/", ex: "three 三, this 这, thank 谢谢", sound: "three" },
+  { sym: "ck", phon: "/k/", ex: "back 后面, black 黑色, clock 钟", sound: "black" },
+  { sym: "ai / ay", phon: "/eɪ/", ex: "rain 雨, play 玩, day 天", sound: "rain" },
+  { sym: "ou / ow", phon: "/aʊ/", ex: "house 房子, cow 牛, now 现在", sound: "house" }
+];
+
+const PHONICS_QUIZ = [
+  { q: "字母组合 'sh' 发什么音？", opts: ["A. /ʃ/ (像\"嘘\")", "B. /k/", "C. /iː/"], ans: 0, exp: "sh 发 /ʃ/，如 she、fish、shop。" },
+  { q: "哪个单词里的 'a' 发 /æ/？", opts: ["A. cat 猫", "B. cake 蛋糕", "C. name 名字"], ans: 0, exp: "cat 的 a 发短音 /æ/；cake/name 的 a 发 /eɪ/（因为有字母 e 结尾）。" },
+  { q: "字母组合 'ee' 发什么音？", opts: ["A. /uː/", "B. /iː/", "C. /tʃ/"], ans: 1, exp: "ee 发长音 /iː/，如 see、three。" },
+  { q: "哪个单词里的 'oo' 读 /ʊ/？", opts: ["A. book 书", "B. food 食物", "C. zoo 动物园"], ans: 0, exp: "food/zoo 的 oo 发 /uː/，而 book/good 的 oo 发短音 /ʊ/。" },
+  { q: "字母组合 'ch' 发什么音？", opts: ["A. /ʃ/", "B. /tʃ/", "C. /θ/"], ans: 1, exp: "ch 发 /tʃ/，如 chair、China。" }
+];
+
+// ============ 基础练习（从零开始） ============
+const BASIC_LEVELS = [
+  {
+    title: "第1级 · 认识26个字母",
+    intro: "先认识字母的大小写，这是所有英语的基础。",
+    items: [
+      { q: "字母'A'的小写是？", opts: ["a", "b", "c", "e"], ans: 0 },
+      { q: "字母'G'的小写是？", opts: ["g", "j", "y", "h"], ans: 0 },
+      { q: "字母'B'的小写是？", opts: ["d", "b", "p", "q"], ans: 1 },
+      { q: "字母'M'的小写是？", opts: ["n", "w", "m", "v"], ans: 2 },
+      { q: "字母'R'的小写是？", opts: ["r", "p", "s", "t"], ans: 0 }
+    ]
+  },
+  {
+    title: "第2级 · 数字和颜色",
+    intro: "学会这些最常用的基础词，见到就能认。",
+    items: [
+      { q: "'一' 用英语怎么说？", opts: ["one", "two", "three", "four"], ans: 0 },
+      { q: "'红色' 是？", opts: ["green", "blue", "red", "black"], ans: 2 },
+      { q: "'三' 是？", opts: ["one", "three", "two", "ten"], ans: 1 },
+      { q: "'黄色' 是？", opts: ["white", "yellow", "purple", "grey"], ans: 1 },
+      { q: "'五' 是？", opts: ["four", "five", "six", "seven"], ans: 1 }
+    ]
+  },
+  {
+    title: "第3级 · 常用问候语",
+    intro: "这些句子你每天都能用，背熟非常实用。",
+    items: [
+      { q: "'你好' 是？", opts: ["Goodbye", "Hello / Hi", "Thank you", "Sorry"], ans: 1 },
+      { q: "'谢谢' 是？", opts: ["please", "sorry", "thank you", "you're welcome"], ans: 2 },
+      { q: "'再见' 是？", opts: ["Hello", "Goodbye / Bye", "Morning", "Good night"], ans: 1 },
+      { q: "'对不起' 是？", opts: ["Thank you", "Sorry", "Excuse me", "Please"], ans: 1 },
+      { q: "'请' 是？", opts: ["Please", "Thanks", "Sorry", "Hi"], ans: 0 }
+    ]
+  },
+  {
+    title: "第4级 · 常用动词（动作）",
+    intro: "句子里的动作词，学会这些就能说简单句子。",
+    items: [
+      { q: "'吃' 是？", opts: ["drink", "eat", "run", "walk"], ans: 1 },
+      { q: "'喝' 是？", opts: ["eat", "sleep", "drink", "read"], ans: 2 },
+      { q: "'跑' 是？", opts: ["walk", "run", "jump", "sit"], ans: 1 },
+      { q: "'读' 是？", opts: ["write", "listen", "read", "speak"], ans: 2 },
+      { q: "'看'（看书） 是？", opts: ["read", "look", "see", "watch"], ans: 0 }
+    ]
+  },
+  {
+    title: "第5级 · 常见名词（东西）",
+    intro: "身边常见的东西，见面就能认出来。",
+    items: [
+      { q: "'书' 是？", opts: ["book", "pen", "bag", "desk"], ans: 0 },
+      { q: "'水' 是？", opts: ["milk", "tea", "water", "juice"], ans: 2 },
+      { q: "'杯子' 是？", opts: ["box", "cup", "cap", "can"], ans: 1 },
+      { q: "'桌子' 是？", opts: ["chair", "table/desk", "bed", "door"], ans: 1 },
+      { q: "'人' 是？", opts: ["man", "people/person", "woman", "child"], ans: 1 }
+    ]
+  },
+  {
+    title: "第6级 · 简单句子",
+    intro: "用学过的词组成最简单的句子，迈出说英语第一步。",
+    items: [
+      { q: "'我吃一个苹果' 正确说法？", opts: ["I apple eat.", "I eat an apple.", "Apple I eat.", "Eat I apple."], ans: 1 },
+      { q: "'她每天读书' 正确说法？", opts: ["She reads every day.", "Reads she every day.", "She every day read.", "Every day she read."], ans: 0 },
+      { q: "'他喜欢水' 正确说法？", opts: ["He water likes.", "He like water.", "He likes water.", "Likes he water."], ans: 2 },
+      { q: "'我们是一家人' 正确说法？", opts: ["We are a family.", "We is a family.", "We am a family.", "A family we are."], ans: 0 }
+    ]
+  }
+];
