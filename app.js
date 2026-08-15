@@ -113,10 +113,15 @@ function renderToday() {
   const g = GRAMMAR[idx % GRAMMAR.length];
   $("todayGrammar").innerHTML = `<div class="g-title">${g.title}</div><div class="g-exp">${g.body.replace(/\n/g, "<br>")}</div><div class="g-ex">${exLinesHtml(g.ex)}</div>`;
 
-  // 阅读 → 可点击切换“英文/中文”
+  // 阅读 → 逐句显示（每句带🔊朗读 + 中文翻译），另有整段朗读
+  const sentsHtml = (read.sents || []).map(s => `
+    <div class="r-line">
+      <button class="link-speak" onclick="sayExFromData(this)" data-en="${s.en}">🔊</button>
+      <span class="r-en">${s.en}</span>
+      <span class="r-cn">${s.cn}</span>
+    </div>`).join("");
   $("todayReading").innerHTML = `
-    <div class="r-en">${read.en}</div>
-    <div class="r-cn">${read.cn}</div>
+    <div class="r-sents">${sentsHtml}</div>
     <span class="r-btnw"><button class="r-speak" onclick="speakRead()">🔊 朗读整段</button></span>`;
   window._curRead = read.en;
   $("todayReading").querySelector(".r-btnw").onclick = null;
@@ -403,20 +408,45 @@ function renderWordsAll() {
 }
 
 // ---------- 从零学英文 ----------
-function renderFromZero() {
-  const sceneHtml = group => group.map(sc => `
+const FZ_COUNT = { S: 8, L: 7, B: 6 }; // 每块每次显示的场景数
+let _fzSeed = 0;
+function shuffleFromZero() {
+  _fzSeed++;
+  const pick = (arr, n) => [...arr].sort(() => Math.random() - 0.5).slice(0, n);
+  // 每个场景内句子也随机排序
+  const sceneHtmlShuffled = group => group.map(sc => ({
+    ...sc, lines: [...sc.lines].sort(() => Math.random() - 0.5)
+  })).map(sc => `
     <div class="fz-scene">
       <div class="fz-topic">${sc.topic}</div>
-      ${sc.lines.map((ln, i) => `
+      ${sc.lines.map(ln => `
         <div class="fz-line">
           <span class="fz-en">${ln.en}</span>
           <span class="fz-cn">${ln.cn}</span>
           <button class="link-speak" onclick="sayExFromData(this)" data-en="${ln.en}">🔊</button>
         </div>`).join("")}
     </div>`).join("");
-  $("fromZeroSpoken").innerHTML = sceneHtml(SPOKEN);
-  $("fromZeroLife").innerHTML = sceneHtml(LIFE_EN);
-  $("fromZeroBiz").innerHTML = sceneHtml(BIZ_EN);
+  $("fromZeroSpoken").innerHTML = sceneHtmlShuffled(pick(SPOKEN, FZ_COUNT.S));
+  $("fromZeroLife").innerHTML = sceneHtmlShuffled(pick(LIFE_EN, FZ_COUNT.L));
+  $("fromZeroBiz").innerHTML = sceneHtmlShuffled(pick(BIZ_EN, FZ_COUNT.B));
+}
+
+function renderFromZero() {
+  // 首次：按原始顺序展示每组前若干场景（也可直接随机）
+  const first = (arr, n) => [...arr].slice(0, n);
+  const sceneHtml = group => group.map(sc => `
+    <div class="fz-scene">
+      <div class="fz-topic">${sc.topic}</div>
+      ${sc.lines.map(ln => `
+        <div class="fz-line">
+          <span class="fz-en">${ln.en}</span>
+          <span class="fz-cn">${ln.cn}</span>
+          <button class="link-speak" onclick="sayExFromData(this)" data-en="${ln.en}">🔊</button>
+        </div>`).join("")}
+    </div>`).join("");
+  $("fromZeroSpoken").innerHTML = sceneHtml(first(SPOKEN, FZ_COUNT.S));
+  $("fromZeroLife").innerHTML = sceneHtml(first(LIFE_EN, FZ_COUNT.L));
+  $("fromZeroBiz").innerHTML = sceneHtml(first(BIZ_EN, FZ_COUNT.B));
 }
 
 // 朗读：从 data-en 属性读英文（避免中文干扰）

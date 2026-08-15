@@ -261,6 +261,13 @@ main { max-width: 860px; margin: 20px auto; padding: 0 16px; }
 .w-cn summary { cursor: pointer; padding: 8px 12px; color: #2b4a8f; font-weight: 600; font-size: 14px; }
 .w-cn-body { padding: 4px 14px 12px; color: #333; line-height: 1.8; }
 
+/* 每日阅读逐句 */
+.r-sents { margin: 6px 0; }
+.r-line { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px dashed #e8edf8; }
+.r-line:last-child { border-bottom: none; }
+.r-line .r-en { font-weight: 600; color: #1a1a1a; margin-bottom: 0; }
+.r-line .r-cn { color: #555; font-size: 14px; border-top: none; padding-top: 0; }
+
 /* 基础练习 */
 .basic-level { border-left: 4px solid #ffc93c; }
 .basic-level h3 { color: #2b4a8f; font-size: 16px; margin-bottom: 4px; }

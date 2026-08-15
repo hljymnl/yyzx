@@ -149,15 +149,35 @@ const GRAMMAR = [
 const READINGS = [
   {
     en: "Learning English is like building a house. You need to lay a strong foundation first. Words are the bricks, and grammar is the cement. If you learn a little every day, the house will finally stand tall. Do not be afraid of making mistakes. Mistakes help you improve.",
-    cn: "学英语就像盖房子。首先要打好坚实的基础。单词是砖块，语法是水泥。如果每天学一点点，房子终会拔地而起。不要害怕犯错，错误能帮你进步。"
+    cn: "学英语就像盖房子。首先要打好坚实的基础。单词是砖块，语法是水泥。如果每天学一点点，房子终会拔地而起。不要害怕犯错，错误能帮你进步。",
+    sents: [
+      { en: "Learning English is like building a house.", cn: "学英语就像盖房子。" },
+      { en: "You need to lay a strong foundation first.", cn: "首先要打好坚实的基础。" },
+      { en: "Words are the bricks, and grammar is the cement.", cn: "单词是砖块，语法是水泥。" },
+      { en: "If you learn a little every day, the house will finally stand tall.", cn: "如果每天学一点点，房子终会拔地而起。" },
+      { en: "Do not be afraid of making mistakes.", cn: "不要害怕犯错。" },
+      { en: "Mistakes help you improve.", cn: "错误能帮你进步。" }
+    ]
   },
   {
     en: "Many adults want to get a bachelor's degree but worry about the English exam. The key is not talent but persistence. Studying 20 minutes every day is better than studying 3 hours once a week. Keep a small notebook for new words and review them before sleeping.",
-    cn: "许多成年人想获得学士学位，却担心英语考试。关键不在于天赋，而在于坚持。每天学习20分钟，好过每周一次学3小时。准备一个小本子记新单词，睡前复习它们。"
+    cn: "许多成年人想获得学士学位，却担心英语考试。关键不在于天赋，而在于坚持。每天学习20分钟，好过每周一次学3小时。准备一个小本子记新单词，睡前复习它们。",
+    sents: [
+      { en: "Many adults want to get a bachelor's degree but worry about the English exam.", cn: "许多成年人想获得学士学位，却担心英语考试。" },
+      { en: "The key is not talent but persistence.", cn: "关键不在于天赋，而在于坚持。" },
+      { en: "Studying 20 minutes every day is better than studying 3 hours once a week.", cn: "每天学习20分钟，好过每周一次学3小时。" },
+      { en: "Keep a small notebook for new words and review them before sleeping.", cn: "准备一个小本子记新单词，睡前复习它们。" }
+    ]
   },
   {
     en: "Reading is the fastest way to enlarge your vocabulary. When you meet an unknown word, guess its meaning from the sentence first, then check a dictionary. Do not stop and look up every word, or you will lose interest. Focus on the main idea first.",
-    cn: "阅读是扩大词汇量最快的方法。遇到不认识的词，先根据句子猜测词义，再查字典。不要停下来每个词都查，否则你会失去兴趣。先抓住大意。"
+    cn: "阅读是扩大词汇量最快的方法。遇到不认识的词，先根据句子猜测词义，再查字典。不要停下来每个词都查，否则你会失去兴趣。先抓住大意。",
+    sents: [
+      { en: "Reading is the fastest way to enlarge your vocabulary.", cn: "阅读是扩大词汇量最快的方法。" },
+      { en: "When you meet an unknown word, guess its meaning from the sentence first, then check a dictionary.", cn: "遇到不认识的词，先根据句子猜测词义，再查字典。" },
+      { en: "Do not stop and look up every word, or you will lose interest.", cn: "不要停下来每个词都查，否则你会失去兴趣。" },
+      { en: "Focus on the main idea first.", cn: "先抓住大意。" }
+    ]
   }
 ];
 
@@ -554,3 +574,597 @@ const BIZ_EN = [
     { en: "It's a win-win situation.", cn: "这是一个双赢的局面。" }
   ]}
 ];
+
+// ============ 口语练习补充场景（扩到500句用） ============
+SPOKEN.push(
+  { topic: "⑦ 道歉", lines: [
+    { en: "I am so sorry.", cn: "我非常抱歉。" },
+    { en: "I apologize for being late.", cn: "我为迟到道歉。" },
+    { en: "It's my fault.", cn: "这是我的错。" },
+    { en: "Please forgive me.", cn: "请原谅我。" },
+    { en: "No problem. It's all right.", cn: "没关系，不要紧。" }
+  ]},
+  { topic: "⑧ 感谢", lines: [
+    { en: "Thank you so much.", cn: "非常感谢你。" },
+    { en: "I really appreciate your help.", cn: "我真的很感激你的帮助。" },
+    { en: "You are very kind.", cn: "你真好。" },
+    { en: "Thanks a lot for your time.", cn: "非常感谢你花时间。" },
+    { en: "You're welcome.", cn: "不客气。" }
+  ]},
+  { topic: "⑨ 请求帮助", lines: [
+    { en: "Could you help me, please?", cn: "你能帮我一下吗？" },
+    { en: "Can you do me a favor?", cn: "你能帮我个忙吗？" },
+    { en: "Would you mind opening the door?", cn: "你介意开一下门吗？" },
+    { en: "I need a hand with this bag.", cn: "我需要帮忙拿这个包。" },
+    { en: "Sure, no problem.", cn: "当然，没问题。" }
+  ]},
+  { topic: "⑩ 表达喜好", lines: [
+    { en: "I like playing basketball.", cn: "我喜欢打篮球。" },
+    { en: "Do you like coffee or tea?", cn: "你喜欢咖啡还是茶？" },
+    { en: "I prefer tea to coffee.", cn: "比起咖啡我更喜欢茶。" },
+    { en: "I don't like spicy food.", cn: "我不喜欢辣的食物。" },
+    { en: "What's your favorite movie?", cn: "你最喜欢的电影是什么？" }
+  ]},
+  { topic: "⑪ 天气", lines: [
+    { en: "How is the weather today?", cn: "今天天气怎么样？" },
+    { en: "It's sunny and warm.", cn: "天气晴朗又温暖。" },
+    { en: "It may rain this afternoon.", cn: "今天下午可能会下雨。" },
+    { en: "It's cold outside, put on a coat.", cn: "外面冷，穿件外套。" },
+    { en: "The weather is nice today.", cn: "今天天气真好。" }
+  ]},
+  { topic: "⑫ 时间日期", lines: [
+    { en: "What time is it now?", cn: "现在几点了？" },
+    { en: "It's half past eight.", cn: "现在是八点半。" },
+    { en: "What day is it today?", cn: "今天星期几？" },
+    { en: "Today is Monday.", cn: "今天是星期一。" },
+    { en: "What's the date today?", cn: "今天几号？" }
+  ]},
+  { topic: "⑬ 预订餐厅", lines: [
+    { en: "I'd like to book a table for two.", cn: "我想预订一张双人桌。" },
+    { en: "For what time, please?", cn: "请问什么时间？" },
+    { en: "At seven o'clock tonight.", cn: "今晚七点。" },
+    { en: "A table by the window, please.", cn: "请给我靠窗的桌子。" },
+    { en: "May I have your name?", cn: "请问您的名字？" }
+  ]},
+  { topic: "⑭ 找厕所", lines: [
+    { en: "Excuse me, where is the restroom?", cn: "不好意思，洗手间在哪里？" },
+    { en: "It's on the second floor.", cn: "在二楼。" },
+    { en: "Go down the hall and turn right.", cn: "沿着走廊走然后右转。" },
+    { en: "Is it near here?", cn: "离这里近吗？" },
+    { en: "Yes, just around the corner.", cn: "是的，就在拐角处。" }
+  ]},
+  { topic: "⑮ 表示同意不同意", lines: [
+    { en: "I agree with you.", cn: "我同意你的看法。" },
+    { en: "You are right.", cn: "你说得对。" },
+    { en: "I'm afraid I disagree.", cn: "恐怕我不同意。" },
+    { en: "I don't think so.", cn: "我不这么认为。" },
+    { en: "That sounds good to me.", cn: "这听起来不错。" }
+  ]},
+  { topic: "⑯ 表示惊讶", lines: [
+    { en: "Oh my god!", cn: "我的天啊！" },
+    { en: "That's amazing!", cn: "太令人惊叹了！" },
+    { en: "Really? I can't believe it.", cn: "真的吗？我不敢相信。" },
+    { en: "Are you kidding me?", cn: "你在开玩笑吗？" },
+    { en: "What a surprise!", cn: "真是个惊喜！" }
+  ]},
+  { topic: "⑰ 旅行", lines: [
+    { en: "I'd like to book a flight to Beijing.", cn: "我想订一张去北京的机票。" },
+    { en: "I need a single room.", cn: "我需要一个单人间。" },
+    { en: "How long will you stay?", cn: "你会住多久？" },
+    { en: "I'll stay for three nights.", cn: "我会住三个晚上。" },
+    { en: "Can I have a wake-up call at six?", cn: "早上六点能叫醒我吗？" }
+  ]},
+  { topic: "⑱ 身体健康", lines: [
+    { en: "I feel tired today.", cn: "我今天感觉累。" },
+    { en: "Are you feeling better?", cn: "你感觉好点了吗？" },
+    { en: "I got a cold last night.", cn: "我昨晚着凉了。" },
+    { en: "You should rest more.", cn: "你应该多休息。" },
+    { en: "Drink more water, please.", cn: "请多喝水。" }
+  ]},
+  { topic: "⑲ 家庭", lines: [
+    { en: "How many people are in your family?", cn: "你家有几口人？" },
+    { en: "I have one brother and one sister.", cn: "我有一个哥哥和一个妹妹。" },
+    { en: "My father is a teacher.", cn: "我父亲是老师。" },
+    { en: "I live with my parents.", cn: "我和父母住在一起。" },
+    { en: "We love each other very much.", cn: "我们彼此很相爱。" }
+  ]},
+  { topic: "⑳ 兴趣爱好", lines: [
+    { en: "What do you do in your free time?", cn: "你空闲时间做什么？" },
+    { en: "I enjoy listening to music.", cn: "我喜欢听音乐。" },
+    { en: "I go hiking on weekends.", cn: "我周末去远足。" },
+    { en: "Do you play any instruments?", cn: "你会玩什么乐器吗？" },
+    { en: "I'm interested in photography.", cn: "我对摄影感兴趣。" }
+  ]},
+  { topic: "㉑ 运动", lines: [
+    { en: "Do you do any sports?", cn: "你做什么运动吗？" },
+    { en: "I play football every week.", cn: "我每周踢足球。" },
+    { en: "Swimming is good for health.", cn: "游泳对健康有好处。" },
+    { en: "Let's go for a run together.", cn: "我们一起去跑步吧。" },
+    { en: "I'm not good at sports.", cn: "我不擅长运动。" }
+  ]},
+  { topic: "㉒ 道别", lines: [
+    { en: "I have to go now.", cn: "我现在得走了。" },
+    { en: "See you tomorrow.", cn: "明天见。" },
+    { en: "See you later.", cn: "待会儿见。" },
+    { en: "Goodbye, take care.", cn: "再见，保重。" },
+    { en: "Keep in touch!", cn: "保持联系！" }
+  ]},
+  { topic: "㉓ 迟到", lines: [
+    { en: "Sorry, I'm late.", cn: "对不起，我迟到了。" },
+    { en: "I got stuck in traffic.", cn: "我被堵在路上了。" },
+    { en: "The bus was late this morning.", cn: "今早公交晚点了。" },
+    { en: "I overslept this morning.", cn: "我今早睡过头了。" },
+    { en: "It won't happen again.", cn: "不会再发生了。" }
+  ]},
+  { topic: "㉔ 生日", lines: [
+    { en: "Happy birthday to you!", cn: "祝你生日快乐！" },
+    { en: "How old are you?", cn: "你多大了？" },
+    { en: "Make a wish and blow out the candles.", cn: "许个愿，吹灭蜡烛。" },
+    { en: "Here is a gift for you.", cn: "这是给你的礼物。" },
+    { en: "Wish you all the best.", cn: "祝你一切顺利。" }
+  ]},
+  { topic: "㉕ 学校生活", lines: [
+    { en: "What subjects do you study?", cn: "你学哪些科目？" },
+    { en: "I'm good at English.", cn: "我英语学得好。" },
+    { en: "I have math class at nine.", cn: "我九点有数学课。" },
+    { en: "When is the exam?", cn: "考试是什么时候？" },
+    { en: "The homework is hard.", cn: "作业很难。" }
+  ]},
+  { topic: "㉖ 电影", lines: [
+    { en: "Let's go to the movies tonight.", cn: "我们今晚去看电影吧。" },
+    { en: "What kind of film do you like?", cn: "你喜欢哪种电影？" },
+    { en: "I like action movies.", cn: "我喜欢动作片。" },
+    { en: "The film was really exciting.", cn: "这部电影很刺激。" },
+    { en: "Do you want some popcorn?", cn: "你想要点爆米花吗？" }
+  ]},
+  { topic: "㉗ 地铁", lines: [
+    { en: "Where is the subway station?", cn: "地铁站在哪里？" },
+    { en: "Which line goes to the airport?", cn: "哪条线去机场？" },
+    { en: "You need to change at the next stop.", cn: "你需要在下一站换乘。" },
+    { en: "How often does the train come?", cn: "地铁多久来一趟？" },
+    { en: "Every five minutes.", cn: "每五分钟一趟。" }
+  ]},
+  { topic: "㉘ 理发店", lines: [
+    { en: "I want a haircut, please.", cn: "我想理个发。" },
+    { en: "How would you like your hair?", cn: "你想要什么发型？" },
+    { en: "Just a trim, please.", cn: "稍微修剪一下就好。" },
+    { en: "Please make it shorter.", cn: "请剪短一些。" },
+    { en: "How much does it cost?", cn: "多少钱？" }
+  ]},
+  { topic: "㉙ 宠物", lines: [
+    { en: "Do you have any pets?", cn: "你养宠物吗？" },
+    { en: "I have a cute dog.", cn: "我有一只可爱的狗。" },
+    { en: "What's your pet's name?", cn: "你的宠物叫什么名字？" },
+    { en: "I take my dog for a walk daily.", cn: "我每天遛狗。" },
+    { en: "The cat likes to sleep.", cn: "这只猫喜欢睡觉。" }
+  ]},
+  { topic: "㉚ 点外卖", lines: [
+    { en: "I'd like to order some food.", cn: "我想点一些食物。" },
+    { en: "Can I order online?", cn: "我可以在线点吗？" },
+    { en: "How long will the delivery take?", cn: "外卖要多久送到？" },
+    { en: "About thirty minutes.", cn: "大约三十分钟。" },
+    { en: "Please deliver it to my office.", cn: "请送到我的办公室。" }
+  ]},
+  { topic: "㉛ 讲价", lines: [
+    { en: "Can you give me a discount?", cn: "你能给我打个折吗？" },
+    { en: "Is this the best price?", cn: "这是最低价吗？" },
+    { en: "It's a little expensive.", cn: "有点贵。" },
+    { en: "Can you make it cheaper?", cn: "能便宜点吗？" },
+    { en: "OK, I'll take two.", cn: "好，我拿两个。" }
+  ]},
+  { topic: "㉜ 快递", lines: [
+    { en: "I have a package to send.", cn: "我有一个包裹要寄。" },
+    { en: "I want to send this by express mail.", cn: "我想用快递寄这个。" },
+    { en: "Where do you want to send it?", cn: "你想寄到哪里？" },
+    { en: "To Guangzhou, please.", cn: "寄到广州。" },
+    { en: "Please fill in the address.", cn: "请填写地址。" }
+  ]},
+  { topic: "㉝ 网约车", lines: [
+    { en: "Can I get a ride to the airport?", cn: "我能叫车去机场吗？" },
+    { en: "I booked a taxi online.", cn: "我在网上叫了车。" },
+    { en: "Where is your location?", cn: "你在什么位置？" },
+    { en: "The car is on its way.", cn: "车正在路上。" },
+    { en: "Please wait at the gate.", cn: "请在门口等。" }
+  ]},
+  { topic: "㉞ 夸奖", lines: [
+    { en: "You did a great job!", cn: "你做得太棒了！" },
+    { en: "You look great today.", cn: "你今天看起来很好。" },
+    { en: "Well done, keep it up!", cn: "做得好，继续加油！" },
+    { en: "I'm proud of you.", cn: "我为你感到骄傲。" },
+    { en: "You are the best!", cn: "你是最棒的！" }
+  ]}
+);
+
+// ============ 生活英语补充场景 ============
+LIFE_EN.push(
+  { topic: "🛂 办理证件", lines: [
+    { en: "I need to renew my passport.", cn: "我需要续办护照。" },
+    { en: "Please bring your ID card.", cn: "请带上你的身份证。" },
+    { en: "Fill out this application form.", cn: "填写这张申请表。" },
+    { en: "How long will it take to get it?", cn: "办理需要多长时间？" },
+    { en: "About two weeks.", cn: "大约两周。" }
+  ]},
+  { topic: "📞 报修水电", lines: [
+    { en: "The water pipe is broken.", cn: "水管坏了。" },
+    { en: "There is no hot water.", cn: "没有热水。" },
+    { en: "Can you send a repairman?", cn: "你能派个维修人员来吗？" },
+    { en: "The power went out.", cn: "停电了。" },
+    { en: "I'll be there this afternoon.", cn: "我今天下午过去。" }
+  ]},
+  { topic: "💊 买药", lines: [
+    { en: "Do you have medicine for a cold?", cn: "你们有感冒药吗？" },
+    { en: "I have a fever and a sore throat.", cn: "我发烧喉咙痛。" },
+    { en: "Take two pills after each meal.", cn: "每餐饭后吃两片。" },
+    { en: "How often should I take it?", cn: "我应该多久吃一次？" },
+    { en: "Three times a day.", cn: "一天三次。" }
+  ]},
+  { topic: "👕 干洗衣服", lines: [
+    { en: "I'd like to dry clean this suit.", cn: "我想干洗这套西装。" },
+    { en: "There is a stain on the shirt.", cn: "衬衫上有个污渍。" },
+    { en: "Can you get it out?", cn: "你能去掉它吗？" },
+    { en: "When can I pick it up?", cn: "我什么时候能取？" },
+    { en: "Tomorrow afternoon.", cn: "明天下午。" }
+  ]},
+  { topic: "📷 拍照冲洗", lines: [
+    { en: "I want to print these photos.", cn: "我想打印这些照片。" },
+    { en: "How many copies do you need?", cn: "你需要几张？" },
+    { en: "Two copies of each, please.", cn: "每张两份。" },
+    { en: "What size do you want?", cn: "你要什么尺寸？" },
+    { en: "Six inches, please.", cn: "六寸的。" }
+  ]},
+  { topic: "🚗 加油", lines: [
+    { en: "Fill up the tank, please.", cn: "请把油箱加满。" },
+    { en: "What kind of gas do you use?", cn: "你加什么油？" },
+    { en: "Regular, please.", cn: "普通汽油。" },
+    { en: "Can you check the tires too?", cn: "能也检查一下轮胎吗？" },
+    { en: "The tire pressure is low.", cn: "胎压偏低了。" }
+  ]},
+  { topic: "🚲 修自行车", lines: [
+    { en: "My bike has a flat tire.", cn: "我的自行车轮胎瘪了。" },
+    { en: "Can you fix the brake?", cn: "你能修一下刹车吗？" },
+    { en: "The chain keeps coming off.", cn: "链条老是掉。" },
+    { en: "How much will the repair cost?", cn: "修理要多少钱？" },
+    { en: "Twenty yuan, please.", cn: "二十元。" }
+  ]},
+  { topic: "🏪 便利店", lines: [
+    { en: "I'll just have a bottle of water.", cn: "我只要一瓶水。" },
+    { en: "Do you accept mobile payment?", cn: "接受手机支付吗？" },
+    { en: "Please scan the QR code.", cn: "请扫二维码。" },
+    { en: "Do you want a bag?", cn: "需要袋子吗？" },
+    { en: "No, thank you.", cn: "不用了，谢谢。" }
+  ]},
+  { topic: "📖 图书馆", lines: [
+    { en: "Can I borrow this book?", cn: "我可以借这本书吗？" },
+    { en: "How long can I keep it?", cn: "我可以借多久？" },
+    { en: "Two weeks, please return on time.", cn: "两周，请按时归还。" },
+    { en: "The book is due today.", cn: "这本书今天到期。" },
+    { en: "I want to renew it online.", cn: "我想在线续借。" }
+  ]},
+  { topic: "🎬 电影院", lines: [
+    { en: "Two tickets for the seven o'clock show.", cn: "两张七点的票。" },
+    { en: "Which seats would you like?", cn: "你想要哪些座位？" },
+    { en: "Middle row, please.", cn: "中间排。" },
+    { en: "Is there a discount for students?", cn: "学生有优惠吗？" },
+    { en: "Please show your student card.", cn: "请出示学生证。" }
+  ]},
+  { topic: "🌦️ 看天气预告", lines: [
+    { en: "What's the weather forecast?", cn: "天气预报怎么说？" },
+    { en: "It will be cloudy tomorrow.", cn: "明天多云。" },
+    { en: "There will be a strong wind tonight.", cn: "今晚会有大风。" },
+    { en: "The temperature will drop.", cn: "气温会下降。" },
+    { en: "Better bring an umbrella.", cn: "最好带把伞。" }
+  ]},
+  { topic: "💇 剪头发", lines: [
+    { en: "I'd like a new hairstyle.", cn: "我想要个新发型。" },
+    { en: "Do you have a photo as reference?", cn: "你有照片做参考吗？" },
+    { en: "Please wash my hair first.", cn: "请先帮我洗头。" },
+    { en: "Don't cut it too short.", cn: "别剪太短。" },
+    { en: "It looks great, thank you.", cn: "看起来很棒，谢谢。" }
+  ]},
+  { topic: "🚿 健身房", lines: [
+    { en: "I want to join the gym.", cn: "我想加入健身房。" },
+    { en: "How much is the monthly fee?", cn: "每月费用多少？" },
+    { en: "What are your opening hours?", cn: "你们几点开门？" },
+    { en: "We open from seven to ten.", cn: "我们七点到十点营业。" },
+    { en: "Where is the locker room?", cn: "更衣室在哪里？" }
+  ]},
+  { topic: "🛠️ 五金店", lines: [
+    { en: "I need a hammer.", cn: "我需要一把锤子。" },
+    { en: "Do you sell light bulbs?", cn: "你们卖灯泡吗？" },
+    { en: "I'm looking for some screws.", cn: "我在找一些螺丝。" },
+    { en: "This one is too big.", cn: "这个太大了。" },
+    { en: "Do you have a smaller size?", cn: "有小一点的尺寸吗？" }
+  ]},
+  { topic: "🏥 药房取药", lines: [
+    { en: "Here is my prescription.", cn: "这是我的处方。" },
+    { en: "The pharmacist will prepare it.", cn: "药剂师会配药。" },
+    { en: "Please wait about ten minutes.", cn: "请等大约十分钟。" },
+    { en: "It's ready now.", cn: "药已经配好了。" },
+    { en: "Thank you for your patience.", cn: "谢谢你的耐心。" }
+  ]},
+  { topic: "🌳 公园", lines: [
+    { en: "This park is beautiful.", cn: "这个公园很美。" },
+    { en: "Let's take a walk by the lake.", cn: "我们去湖边走走。" },
+    { en: "The flowers are in bloom.", cn: "花开了。" },
+    { en: "Can we have a picnic here?", cn: "我们能在这里野餐吗？" },
+    { en: "The air is fresh here.", cn: "这里空气新鲜。" }
+  ]},
+  { topic: "🛒 退货", lines: [
+    { en: "I'd like to return this item.", cn: "我想退掉这件商品。" },
+    { en: "Do you have the receipt?", cn: "你有收据吗？" },
+    { en: "Yes, here it is.", cn: "有，在这里。" },
+    { en: "There is a problem with it.", cn: "它有问题。" },
+    { en: "We will refund your money.", cn: "我们会退你钱。" }
+  ]},
+  { topic: "🚾 问洗手间", lines: [
+    { en: "Is there a bathroom nearby?", cn: "附近有洗手间吗？" },
+    { en: "It's right over there.", cn: "就在那边。" },
+    { en: "Is it free to use?", cn: "使用免费吗？" },
+    { en: "Yes, it's free.", cn: "是的，免费。" },
+    { en: "Thanks for telling me.", cn: "谢谢你告诉我。" }
+  ]},
+  { topic: "📮 邮局", lines: [
+    { en: "I want to mail this letter.", cn: "我想寄这封信。" },
+    { en: "I need some stamps.", cn: "我需要一些邮票。" },
+    { en: "How much is the postage?", cn: "邮费多少钱？" },
+    { en: "Please weigh this parcel.", cn: "请称一下这个包裹。" },
+    { en: "The parcel will arrive in a week.", cn: "包裹一周内到。" }
+  ]},
+  { topic: "🏧 取款机", lines: [
+    { en: "Where is the ATM?", cn: "取款机在哪里？" },
+    { en: "The ATM is out of service.", cn: "取款机故障了。" },
+    { en: "I got a cash card.", cn: "我办了一张取款卡。" },
+    { en: "Please enter your password.", cn: "请输入你的密码。" },
+    { en: "Here is your cash.", cn: "这是你的现金。" }
+  ]},
+  { topic: "🚕 打的", lines: [
+    { en: "Please take me to the city center.", cn: "请送我去市中心。" },
+    { en: "Could you turn up the air conditioning?", cn: "能把空调开大吗？" },
+    { en: "How much is the fare?", cn: "车费多少钱？" },
+    { en: "Please stop here.", cn: "请在这里停车。" },
+    { en: "Keep the change.", cn: "不用找零了。" }
+  ]},
+  { topic: "🎂 生日聚会", lines: [
+    { en: "I'm having a birthday party tonight.", cn: "我今晚办生日聚会。" },
+    { en: "Would you like to come?", cn: "你愿意来吗？" },
+    { en: "Where is the party held?", cn: "聚会在哪里举行？" },
+    { en: "At my home at eight.", cn: "在我家，八点。" },
+    { en: "I'll bring a cake.", cn: "我会带个蛋糕。" }
+  ]},
+  { topic: "🏠 搬家", lines: [
+    { en: "I'm moving to a new apartment.", cn: "我要搬到新公寓。" },
+    { en: "Can you help me move the boxes?", cn: "你能帮我搬箱子吗？" },
+    { en: "The movers will come at ten.", cn: "搬家工人十点到。" },
+    { en: "Where should I put these?", cn: "这些放哪里？" },
+    { en: "The apartment is well lit.", cn: "这公寓采光很好。" }
+  ]},
+  { topic: "🥗 健康饮食", lines: [
+    { en: "I'm on a diet.", cn: "我在节食。" },
+    { en: "Vegetables are good for you.", cn: "蔬菜对你有好处。" },
+    { en: "I try to eat more fruit.", cn: "我尽量多吃水果。" },
+    { en: "Don't eat too much junk food.", cn: "别吃太多垃圾食品。" },
+    { en: "Drink at least eight glasses of water.", cn: "每天至少喝八杯水。" }
+  ]},
+  { topic: "🛡️ 安全提醒", lines: [
+    { en: "Be careful when crossing the road.", cn: "过马路要小心。" },
+    { en: "Lock the door before you leave.", cn: "离开前锁门。" },
+    { en: "Don't forget your keys.", cn: "别忘了带钥匙。" },
+    { en: "Watch your step.", cn: "小心脚下。" },
+    { en: "Safety comes first.", cn: "安全第一。" }
+  ]},
+  { topic: "💧 停水停电", lines: [
+    { en: "The water is cut off today.", cn: "今天停水。" },
+    { en: "The electricity will be off tomorrow.", cn: "明天停电。" },
+    { en: "Please store some water.", cn: "请储存一些水。" },
+    { en: "Charge your phone beforehand.", cn: "提前给手机充电。" },
+    { en: "When will it be restored?", cn: "什么时候恢复？" }
+  ]},
+  { topic: "🧾 开发票", lines: [
+    { en: "Can I have an invoice, please?", cn: "能给我开发票吗？" },
+    { en: "What should the invoice say?", cn: "发票抬头怎么写？" },
+    { en: "The company name, please.", cn: "写公司名称。" },
+    { en: "Here is your invoice.", cn: "这是你的发票。" },
+    { en: "Thank you for your business.", cn: "感谢惠顾。" }
+  ]},
+  { topic: "🏫 家长会", lines: [
+    { en: "The parent meeting is on Friday.", cn: "家长会在周五。" },
+    { en: "My child is doing well in class.", cn: "我的孩子上课表现很好。" },
+    { en: "He needs to work harder.", cn: "他需要更努力。" },
+    { en: "How can I help him study?", cn: "我怎样帮他学习？" },
+    { en: "Encourage him to read more.", cn: "鼓励他多阅读。" }
+  ]}
+);
+
+// ============ 商务英语补充场景 ============
+BIZ_EN.push(
+  { topic: "📅 安排会议", lines: [
+    { en: "Let's schedule a meeting for Monday.", cn: "我们安排周一开个会。" },
+    { en: "What time works for you?", cn: "你什么时间方便？" },
+    { en: "I'm available at two o'clock.", cn: "我两点有空。" },
+    { en: "Please send the meeting invitation.", cn: "请发会议邀请。" },
+    { en: "The meeting has been confirmed.", cn: "会议已确认。" }
+  ]},
+  { topic: "📝 汇报工作", lines: [
+    { en: "Let me report on this week's work.", cn: "我汇报一下这周的工作。" },
+    { en: "We have finished the project on time.", cn: "我们按时完成了项目。" },
+    { en: "The sales have increased by ten percent.", cn: "销售额增长了百分之十。" },
+    { en: "We faced some difficulties this week.", cn: "这周我们遇到了一些困难。" },
+    { en: "We solved the main problem yesterday.", cn: "我们昨天解决了主要问题。" }
+  ]},
+  { topic: "🗣️ 提出建议", lines: [
+    { en: "May I make a suggestion?", cn: "我可以提个建议吗？" },
+    { en: "I suggest we try a new plan.", cn: "我建议我们试试新方案。" },
+    { en: "What if we reduce the price?", cn: "如果我们降价怎么样？" },
+    { en: "We could improve the design.", cn: "我们可以改进设计。" },
+    { en: "Let's consider this option first.", cn: "我们先考虑这个方案。" }
+  ]},
+  { topic: "✅ 确认信息", lines: [
+    { en: "Let me confirm the details.", cn: "我来确认一下细节。" },
+    { en: "Can you confirm the delivery date?", cn: "你能确认交货日期吗？" },
+    { en: "Is the order confirmed?", cn: "订单确认了吗？" },
+    { en: "Please confirm by email.", cn: "请通过邮件确认。" },
+    { en: "I have confirmed with the client.", cn: "我已和客户确认过了。" }
+  ]},
+  { topic: "🧾 处理订单", lines: [
+    { en: "We received your order yesterday.", cn: "我们昨天收到了你的订单。" },
+    { en: "The order will be shipped tomorrow.", cn: "订单明天发货。" },
+    { en: "The total is two thousand yuan.", cn: "总价是两千元。" },
+    { en: "Do you want to place another order?", cn: "你还想再下一单吗？" },
+    { en: "We will keep you updated.", cn: "我们会随时通知你。" }
+  ]},
+  { topic: "📦 物流发货", lines: [
+    { en: "When will the goods arrive?", cn: "货物什么时候到？" },
+    { en: "The package was sent yesterday.", cn: "包裹昨天已寄出。" },
+    { en: "Please track the shipment online.", cn: "请在线跟踪物流。" },
+    { en: "The delivery has been delayed.", cn: "发货延迟了。" },
+    { en: "We apologize for the delay.", cn: "我们对延迟表示歉意。" }
+  ]},
+  { topic: "💡 头脑风暴", lines: [
+    { en: "Let's think about new ideas.", cn: "我们想想新点子。" },
+    { en: "Any suggestions from the team?", cn: "团队有什么建议吗？" },
+    { en: "That's a great idea.", cn: "这是个好主意。" },
+    { en: "Let's brainstorm together.", cn: "我们一起头脑风暴。" },
+    { en: "We can write down all ideas first.", cn: "我们先把所有想法写下来。" }
+  ]},
+  { topic: "⏰ 时间管理", lines: [
+    { en: "I have a busy schedule today.", cn: "我今天日程很满。" },
+    { en: "Please prioritize the urgent tasks.", cn: "请优先处理紧急任务。" },
+    { en: "I need to finish this by Friday.", cn: "我需要在周五前完成。" },
+    { en: "We are running out of time.", cn: "我们时间不够了。" },
+    { en: "Let's make a to-do list.", cn: "我们列个待办清单。" }
+  ]},
+  { topic: "👥 招聘面试", lines: [
+    { en: "Tell me about your work experience.", cn: "聊聊你的工作经验。" },
+    { en: "Why do you want this job?", cn: "你为什么想要这份工作？" },
+    { en: "What are your strengths?", cn: "你的优势是什么？" },
+    { en: "I work well in a team.", cn: "我擅长团队合作。" },
+    { en: "We will contact you next week.", cn: "我们下周联系你。" }
+  ]},
+  { topic: "🖥️ 视频会议", lines: [
+    { en: "Can you hear me clearly?", cn: "你能听清我说话吗？" },
+    { en: "Please turn on your camera.", cn: "请打开摄像头。" },
+    { en: "I'm sharing my screen now.", cn: "我现在共享屏幕。" },
+    { en: "You are on mute.", cn: "你静音了。" },
+    { en: "Let's end the meeting here.", cn: "会议就到这里。" }
+  ]},
+  { topic: "✍️ 合同签订", lines: [
+    { en: "We need to sign the contract.", cn: "我们需要签合同。" },
+    { en: "Please review the terms carefully.", cn: "请仔细看条款。" },
+    { en: "Both parties agree on these terms.", cn: "双方同意这些条款。" },
+    { en: "The contract is valid for two years.", cn: "合同有效期两年。" },
+    { en: "It's a binding agreement.", cn: "这是一份有约束力的协议。" }
+  ]},
+  { topic: "📉 处理投诉", lines: [
+    { en: "We received your complaint.", cn: "我们收到了你的投诉。" },
+    { en: "We are sorry for the inconvenience.", cn: "给您带来不便我们很抱歉。" },
+    { en: "We will solve it as soon as possible.", cn: "我们会尽快解决。" },
+    { en: "A solution will be provided today.", cn: "今天会给出解决方案。" },
+    { en: "We value your feedback.", cn: "我们重视你的反馈。" }
+  ]},
+  { topic: "💼 职场礼仪", lines: [
+    { en: "It's polite to greet first.", cn: "先打招呼是礼貌的。" },
+    { en: "Please knock before entering.", cn: "进门前请敲门。" },
+    { en: "Thank the colleague for his help.", cn: "感谢同事的帮助。" },
+    { en: "Be punctual for the meeting.", cn: "开会要准时。" },
+    { en: "Dress properly for work.", cn: "上班穿着要得体。" }
+  ]},
+  { topic: "🏷️ 产品介绍", lines: [
+    { en: "Let me introduce our new product.", cn: "让我介绍我们的新产品。" },
+    { en: "It has many useful functions.", cn: "它有很多实用功能。" },
+    { en: "The quality is very good.", cn: "质量非常好。" },
+    { en: "It is easy to use.", cn: "它很容易使用。" },
+    { en: "Here is a sample for you.", cn: "这是给你的样品。" }
+  ]},
+  { topic: "📊 数据分析", lines: [
+    { en: "The data shows a clear trend.", cn: "数据显示了明显的趋势。" },
+    { en: "Sales are rising steadily.", cn: "销售额稳步上升。" },
+    { en: "The chart is easy to read.", cn: "这个图表很容易看懂。" },
+    { en: "We need more information.", cn: "我们需要更多信息。" },
+    { en: "Let's analyze the results.", cn: "我们分析一下结果。" }
+  ]},
+  { topic: "📚 参加培训", lines: [
+    { en: "There is a training course next month.", cn: "下个月有培训课程。" },
+    { en: "Everyone should attend.", cn: "每个人都应参加。" },
+    { en: "The training is very useful.", cn: "这次培训很有用。" },
+    { en: "Let's take notes during the class.", cn: "上课时记笔记。" },
+    { en: "I learned a lot today.", cn: "我今天学到了很多。" }
+  ]},
+  { topic: "🤝 建立关系", lines: [
+    { en: "I'm glad to cooperate with your company.", cn: "很高兴与贵公司合作。" },
+    { en: "Let's build a long-term relationship.", cn: "我们建立长期合作关系。" },
+    { en: "Trust is important in business.", cn: "在生意中信任很重要。" },
+    { en: "We look forward to working together.", cn: "我们期待一起合作。" },
+    { en: "Communication is the key.", cn: "沟通是关键。" }
+  ]},
+  { topic: "🎓 职业发展", lines: [
+    { en: "I want to improve my skills.", cn: "我想提升我的技能。" },
+    { en: "There is room for promotion.", cn: "有晋升空间。" },
+    { en: "Set clear career goals.", cn: "设定清晰的职业目标。" },
+    { en: "Keep learning new things.", cn: "持续学习新东西。" },
+    { en: "A good attitude matters.", cn: "良好的态度很重要。" }
+  ]}
+);
+
+// ============ 口语补充场景2 ============
+SPOKEN.push(
+  { topic: "㉟ 网上聊天", lines: [
+    { en: "Are you online now?", cn: "你现在在线吗？" },
+    { en: "Let's chat later.", cn: "我们待会聊。" },
+    { en: "I'll send you a message.", cn: "我会给你发消息。" },
+    { en: "Did you receive my message?", cn: "你收到我的消息了吗？" },
+    { en: "See you online tonight.", cn: "今晚网上见。" }
+  ]},
+  { topic: "㊱ 兴趣社团", lines: [
+    { en: "I joined a reading club.", cn: "我加入了一个读书会。" },
+    { en: "We meet every Saturday.", cn: "我们每周六见面。" },
+    { en: "Would you like to join us?", cn: "你想加入我们吗？" },
+    { en: "The club has many members.", cn: "这个社团有很多成员。" },
+    { en: "It's fun to be together.", cn: "在一起很有趣。" }
+  ]},
+  { topic: "㊲ 旅游计划", lines: [
+    { en: "I'm planning a trip to Dalian.", cn: "我在计划去大连旅行。" },
+    { en: "When will you leave?", cn: "你什么时候出发？" },
+    { en: "I'll go next month.", cn: "我下个月去。" },
+    { en: "How will you get there?", cn: "你怎么去那里？" },
+    { en: "By high-speed train.", cn: "坐高铁。" }
+  ]},
+  { topic: "㊳ 评价食物", lines: [
+    { en: "The food here is great.", cn: "这里的食物很棒。" },
+    { en: "It's a little salty.", cn: "有点咸。" },
+    { en: "I like the taste.", cn: "我喜欢这个味道。" },
+    { en: "Could you pass the salt?", cn: "能把盐递给我吗？" },
+    { en: "This is my favorite dish.", cn: "这是我最喜欢的菜。" }
+  ]},
+  { topic: "㊴ 睡眠话题", lines: [
+    { en: "I couldn't sleep well last night.", cn: "我昨晚没睡好。" },
+    { en: "You look tired today.", cn: "你今天看起来很累。" },
+    { en: "I went to bed late.", cn: "我睡得很晚。" },
+    { en: "Have a good rest.", cn: "好好休息。" },
+    { en: "Sweet dreams!", cn: "做个好梦！" }
+  ]},
+  { topic: "㊵ 看医生预约", lines: [
+    { en: "I'd like to make an appointment.", cn: "我想预约。" },
+    { en: "The doctor is free at four.", cn: "医生四点有空。" },
+    { en: "What is your symptom?", cn: "你什么症状？" },
+    { en: "I have a stomachache.", cn: "我肚子疼。" },
+    { en: "Take care of yourself.", cn: "照顾好自己。" }
+  ]}
+);
+
+// ============ 生活补充场景2 ============
+LIFE_EN.push(
+  { topic: "📱 手机维修", lines: [
+    { en: "My phone screen is broken.", cn: "我的手机屏幕破了。" },
+    { en: "Can you fix it here?", cn: "你能在这里修吗？" },
+    { en: "How long will it take?", cn: "要多久？" },
+    { en: "About an hour.", cn: "大约一小时。" },
+    { en: "The battery is also weak.", cn: "电池也不太行了。" }
+  ]},
+  { topic: "🎧 买耳机", lines: [
+    { en: "I'm looking for earphones.", cn: "我在找耳机。" },
+    { en: "What's your price range?", cn: "你的预算多少？" },
+    { en: "Under two hundred yuan.", cn: "两百元以内。" },
+    { en: "These sound good.", cn: "这些听起来不错。" },
+    { en: "I'll take this pair.", cn: "我买这副。" }
+  ]}
+);
