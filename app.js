@@ -253,19 +253,143 @@ function doCheckin() {
 
 // ---------- 单词本 ----------
 let wfFilter = "all";
+
+// 音标 → 中文近似音 + 口型提示 映射
+const IPA_HINT = {
+  // 长元音
+  "iː": { zh: "一(长)", tip: "咧嘴笑，拖长" },
+  "ɑː": { zh: "啊(长)", tip: "张大嘴，拖长" },
+  "ɔː": { zh: "哦(长)", tip: "圆嘴，拖长" },
+  "uː": { zh: "呜(长)", tip: "嘟嘴，拖长" },
+  "ɜː": { zh: "饿(长)", tip: "卷舌，拖长" },
+  "ɝ":  { zh: "儿(长)", tip: "美音卷舌" },
+  // 短元音
+  "ɪ": { zh: "衣(短)", tip: "嘴角打开，短促" },
+  "e": { zh: "诶(短)", tip: "嘴扁，短促" },
+  "æ": { zh: "啊(短)", tip: "张大嘴，短促" },
+  "ɒ": { zh: "哦(短)", tip: "圆嘴，短促" },
+  "ʌ": { zh: "阿(短)", tip: "放松，短促" },
+  "ʊ": { zh: "乌(短)", tip: "放松，短促" },
+  "ə": { zh: "饿(轻)", tip: "最轻，像「额」" },
+  "ɚ": { zh: "儿(轻)", tip: "美音卷舌轻音" },
+  // 双元音
+  "eɪ": { zh: "诶衣", tip: "由诶滑向衣" },
+  "aɪ": { zh: "爱", tip: "由啊滑向衣" },
+  "ɔɪ": { zh: "哦衣", tip: "由哦滑向衣" },
+  "aʊ": { zh: "傲", tip: "由啊滑向乌" },
+  "əʊ": { zh: "欧", tip: "由饿滑向乌" },
+  "ɪə": { zh: "衣饿", tip: "由衣滑向饿" },
+  "eə": { zh: "诶饿", tip: "由诶滑向饿" },
+  "ʊə": { zh: "乌饿", tip: "由乌滑向饿" },
+  // 清辅音
+  "p": { zh: "普", tip: "不振动，像吹蜡烛" },
+  "t": { zh: "特", tip: "不振动，舌尖弹上牙" },
+  "k": { zh: "克", tip: "不振动，喉部" },
+  "f": { zh: "夫", tip: "不振动，上牙咬下唇" },
+  "s": { zh: "丝", tip: "不振动，像蛇吐信" },
+  "ʃ": { zh: "嘘", tip: "不振动，让安静" },
+  "θ": { zh: "思", tip: "吐舌，不振动" },
+  "tʃ": { zh: "吃", tip: "不振动" },
+  "h": { zh: "喝(轻)", tip: "轻呼气" },
+  // 浊辅音
+  "b": { zh: "波", tip: "振动，跟p对照" },
+  "d": { zh: "得", tip: "振动，跟t对照" },
+  "ɡ": { zh: "鸽", tip: "振动，跟k对照" },
+  "g": { zh: "鸽", tip: "振动，跟k对照" },
+  "v": { zh: "夫(振动)", tip: "上牙咬下唇" },
+  "z": { zh: "兹", tip: "振动，像蜜蜂" },
+  "ʒ": { zh: "日", tip: "振动" },
+  "ð": { zh: "则", tip: "吐舌，振动" },
+  "dʒ": { zh: "知", tip: "振动" },
+  "m": { zh: "嗯(闭唇)", tip: "鼻音" },
+  "n": { zh: "嗯(舌抵上齿)", tip: "鼻音" },
+  "ŋ": { zh: "嗯(喉部)", tip: "鼻音" },
+  "l": { zh: "乐", tip: "舌抵上齿后" },
+  "r": { zh: "日(卷舌)", tip: "卷舌" },
+  "w": { zh: "屋", tip: "圆唇滑音" },
+  "j": { zh: "耶", tip: "滑音，像「也」" }
+};
+
+// 把音标拆成可读音素序列
+function splitIpa(ph) {
+  let s = String(ph||"").replace(/[\/]/g, "");
+  const out = [];
+  let i = 0;
+  while (i < s.length) {
+    let got = null;
+    // 先试双字符音标（双元音/长元音后置colon）
+    for (let n = 3; n >= 2 && !got; n--) {
+      const sub = s.substr(i, n);
+      if (IPA_HINT[sub]) { got = { sym: sub, ...IPA_HINT[sub] }; i += n; }
+    }
+    if (!got) {
+      // 处理长音符号 : 或 ː
+      const c = s[i];
+      if (c === ":" || c === "ː") {
+        if (out.length) out[out.length-1] = { ...out[out.length-1], long: true };
+        i++;
+      } else if (IPA_HINT[c]) {
+        out.push({ sym: c, ...IPA_HINT[c] });
+        i++;
+      } else {
+        i++; // 忽略无法识别字符
+      }
+    } else {
+      out.push(got);
+    }
+  }
+  return out;
+}
+
+// 拼读展开面板 HTML
+function spellPanel(ph, word) {
+  const parts = splitIpa(ph);
+  if (!parts.length) return `<div class="spell-none">未找到可拆解的拼读（可点🔊听原音）</div>`;
+  const chips = parts.map((p, idx) => `
+    <span class="spell-chip" title="点此听这个音">
+      <b>${p.sym}${p.long ? "ː" : ""}</b>
+      <em>${p.zh}</em>
+      <i>${p.tip}</i>
+      <button class="spell-say" onclick="speak('${p.sym}')">🔊</button>
+    </span>`).join("");
+  return `<div class="spell-wrap">
+    <div class="spell-whole">🔤 整体音标：<b>${ph}</b> <button class="link-speak" onclick="speak('${word}')">🔊 连读单词</button></div>
+    <div class="spell-tip">☝️ 逐个音拼起来，就是「${word}」的读音</div>
+    <div class="spell-chips">${chips}</div>
+  </div>`;
+}
+
+function toggleSpell(btn) {
+  const item = btn.closest(".word-item");
+  const panel = item.querySelector(".w-spell");
+  const wi = Number(item.getAttribute("data-wi"));
+  if (panel.style.display === "none" || !panel.innerHTML) {
+    const w = WiFiWords[wi];
+    if (w) panel.innerHTML = spellPanel(w.ph, w.w);
+    panel.style.display = "block";
+    btn.textContent = "🔇 收起";
+  } else {
+    panel.style.display = "none";
+    btn.textContent = "🔈 拼读";
+  }
+}
+
 function renderWordsAll() {
   let items = [];
   WORD_DAYS.forEach(d => {
     (d.level === wfFilter || wfFilter === "all") && items.push(...d.words);
   });
-  $("wordsAll").innerHTML = items.map(w => `
-    <div class="word-item">
+  window.WiFiWords = items;
+  $("wordsAll").innerHTML = items.map((w, wi) => `
+    <div class="word-item" data-wi="${wi}">
       <div class="w-head">
         <span class="w-word">${w.w}</span>
         <span class="w-phon">${w.ph}</span>
         <span class="w-pos">${w.pos}</span>
         <button class="f-speak" title="听发音" onclick="speak('${w.w}')">🔊</button>
+        <button class="link-speak" title="拼读音标" onclick="toggleSpell(this)">🔈 拼读</button>
       </div>
+      <div class="w-spell" style="display:none"></div>
       <div class="w-means">${w.means}</div>
       <div class="w-example">${w.ex} <button class="link-speak" title="朗读例句" onclick="sayEx(this)">🔊 读例句</button></div>
     </div>`).join("");
