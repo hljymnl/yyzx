@@ -1,0 +1,140 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #f6f7fb;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* 顶栏 */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  background: #2b4a8f;
+  color: #fff;
+  padding: 12px 20px;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+.logo { font-size: 18px; font-weight: 700; margin-right: 8px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.tab {
+  background: rgba(255,255,255,.12);
+  color: #fff; border: none; border-radius: 20px;
+  padding: 7px 14px; font-size: 14px; cursor: pointer;
+  transition: background .2s;
+}
+.tab:hover { background: rgba(255,255,255,.22); }
+.tab.active { background: #ffc93c; color: #2b4a8f; font-weight: 700; }
+
+main { max-width: 860px; margin: 20px auto; padding: 0 16px; }
+.panel { display: none; }
+.panel.active { display: block; animation: fade .3s; }
+@keyframes fade { from {opacity:0; transform: translateY(6px);} to {opacity:1;} }
+
+/* 卡片 */
+.card {
+  background: #fff; border-radius: 14px;
+  padding: 20px; margin-bottom: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.card h2 { font-size: 18px; margin-bottom: 12px; color: #2b4a8f; }
+.tag {
+  display: inline-block; background: #ffe9b3; color: #8a6200;
+  font-size: 12px; padding: 2px 8px; border-radius: 10px; vertical-align: middle;
+}
+.muted { color: #777; font-size: 14px; margin-bottom: 12px; }
+
+.hero { background: linear-gradient(135deg, #2b4a8f, #4a6fc0); color: #fff; }
+.hero-title { font-size: 22px; font-weight: 700; }
+.hero-sub { color: #d4e0ff; font-size: 14px; margin: 4px 0 12px; }
+.progress-mini { margin-top: 8px; }
+.pm-label { font-size: 13px; color: #d4e0ff; margin-bottom: 4px; }
+.pm-track { background: rgba(255,255,255,.2); height: 8px; border-radius: 5px; overflow: hidden; }
+.pm-fill { height: 100%; width: 0; background: #ffc93c; border-radius: 5px; transition: width .4s; }
+
+/* 单词 */
+.word-list { display: flex; flex-direction: column; gap: 10px; }
+.word-item {
+  border: 1px solid #e6e9f2; border-radius: 10px; padding: 12px; cursor: pointer;
+  transition: background .2s;
+}
+.word-item:hover { background: #f3f6ff; }
+.word-item .w-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.word-item .w-word { font-size: 17px; font-weight: 700; color: #2b4a8f; }
+.word-item .w-phon { color: #999; font-size: 14px; }
+.word-item .w-pos { color: #4a6fc0; font-size: 13px; font-weight: 600; }
+.word-item .w-means { margin-top: 6px; font-size: 15px; }
+.word-item .w-example { margin-top: 6px; font-size: 14px; color: #666; border-left: 3px solid #ffc93c; padding-left: 8px; }
+.word-item .w-mark { float: right; font-size: 12px; color: #999; }
+
+.word-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+.word-filter { margin-bottom: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
+.wf { background: #eef1f8; border: none; border-radius: 16px; padding: 6px 14px; cursor: pointer; font-size: 13px; }
+.wf.active { background: #2b4a8f; color: #fff; }
+
+/* 语法 */
+.grammar-box { font-size: 15px; }
+.grammar-box .g-title { font-weight: 700; color: #2b4a8f; margin-bottom: 6px; }
+.grammar-box .g-exp { margin-bottom: 8px; }
+.grammar-box .g-ex { background: #f3f6ff; border-radius: 8px; padding: 10px; font-size: 14px; color: #444; }
+.grammar-list { display: flex; flex-direction: column; gap: 12px; }
+.g-item { border: 1px solid #e6e9f2; border-radius: 10px; padding: 14px; }
+.g-item h3 { color: #2b4a8f; font-size: 16px; margin-bottom: 6px; }
+.g-item .g-body { font-size: 14px; color: #444; }
+.g-item .g-body p { margin: 6px 0; }
+.g-item .g-ex { background: #f3f6ff; border-radius: 8px; padding: 8px 10px; font-size: 13px; color: #555; }
+
+/* 阅读 */
+.reading-box { font-size: 15px; }
+.reading-box .r-en { margin-bottom: 8px; }
+.reading-box .r-cn { color: #666; font-size: 14px; border-top: 1px dashed #ddd; padding-top: 8px; }
+
+/* 练习 */
+.quiz-q { margin-bottom: 14px; }
+.quiz-q .q-text { font-weight: 600; margin-bottom: 6px; }
+.quiz-q .q-opts { display: flex; flex-direction: column; gap: 6px; }
+.quiz-q .q-opt {
+  border: 1px solid #e0e3ee; border-radius: 8px; padding: 8px 10px; cursor: pointer; font-size: 14px;
+}
+.quiz-q .q-opt:hover { background: #f3f6ff; }
+.quiz-q .q-opt.selected { background: #e7edff; border-color: #2b4a8f; }
+.quiz-q .q-opt.correct { background: #d9f6e3; border-color: #2ea44f; }
+.quiz-q .q-opt.wrong { background: #ffe3e3; border-color: #d73a49; }
+.quiz-q .q-explain { margin-top: 6px; font-size: 13px; color: #666; display: none; }
+
+/* 按钮 */
+.btn {
+  border: none; border-radius: 10px; padding: 11px 22px; font-size: 15px; cursor: pointer;
+  margin: 6px 8px 6px 0;
+}
+.btn.primary { background: #2b4a8f; color: #fff; }
+.btn.primary:hover { background: #3a5cb0; }
+.btn.ghost { background: #eef1f8; color: #2b4a8f; }
+.result { margin-top: 10px; font-size: 15px; font-weight: 600; }
+
+/* 打卡 */
+.streak { display: flex; gap: 24px; margin-bottom: 16px; }
+.streak .s-item { text-align: center; }
+.streak .s-num { font-size: 30px; font-weight: 800; color: #2b4a8f; }
+.streak .s-label { font-size: 13px; color: #777; }
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; }
+.calendar .c-day {
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; color: #999; border-radius: 8px; background: #f3f5fa;
+}
+.calendar .c-day.done { background: #2b4a8f; color: #fff; font-weight: 700; }
+.calendar .c-day.today-b { border: 2px solid #ffc93c; }
+.calendar .c-label { font-size: 11px; color: #bbb; text-align: center; }
+
+/* 写作 */
+.w-item { border: 1px solid #e6e9f2; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.w-item h3 { color: #2b4a8f; font-size: 16px; margin-bottom: 6px; }
+.w-item .w-tpl { background: #f3f6ff; border-radius: 8px; padding: 10px; font-size: 14px; white-space: pre-wrap; color: #333; }
+.w-item .w-tip { margin-top: 8px; font-size: 13px; color: #8a6200; background: #fff7df; border-radius: 8px; padding: 8px 10px; }
+
+.footer { text-align: center; color: #999; font-size: 13px; padding: 24px 16px 40px; }
+
+@media (max-width: 480px) {
+  .logo { font-size: 16px; }
+  .tab { font-size: 12px; padding: 6px 10px; }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>辽宁学位英语 · 每日轻松学</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="logo">🎓 学位英语 · 每日轻松学</div>
+  <nav class="tabs">
+    <button class="tab active" data-tab="today">📅 每日学习</button>
+    <button class="tab" data-tab="words">📚 单词本</button>
+    <button class="tab" data-tab="grammar">📖 语法库</button>
+    <button class="tab" data-tab="practice">✍️ 真题练习</button>
+    <button class="tab" data-tab="writing">📝 作文模板</button>
+    <button class="tab" data-tab="checkin">✅ 我的打卡</button>
+  </nav>
+</header>
+
+<main>
+  <!-- 每日学习 -->
+  <section id="tab-today" class="panel active">
+    <div class="card hero">
+      <div id="todayTitle" class="hero-title">今日学习</div>
+      <div id="todayDate" class="hero-sub"></div>
+      <div class="progress-mini">
+        <div class="pm-label">今日进度</div>
+        <div class="pm-track"><div id="pmFill" class="pm-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📌 今日核心单词 <span class="tag">背一背</span></h2>
+      <div id="todayWords" class="word-list"></div>
+    </div>
+
+    <div class="card">
+      <h2>🧠 今日语法 <span class="tag">一点点</span></h2>
+      <div id="todayGrammar" class="grammar-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>📖 今日小阅读 <span class="tag">带翻译</span></h2>
+      <div id="todayReading" class="reading-box"></div>
+    </div>
+
+    <div class="card">
+      <h2>✍️ 今日练习 <span class="tag">选一选</span></h2>
+      <div id="todayQuiz"></div>
+      <button id="todaySubmit" class="btn primary">提交答案</button>
+      <div id="todayResult" class="result"></div>
+      <button id="todayDone" class="btn ghost">✅ 学完打卡</button>
+    </div>
+  </section>
+
+  <!-- 单词本 -->
+  <section id="tab-words" class="panel">
+    <div class="card">
+      <h2>📚 学位英语核心词库</h2>
+      <p class="muted">按天分组，每天背一组。点击单词卡片显示释义与例句，可标记"已掌握"。</p>
+      <div class="word-filter">
+        <button class="wf active" data-wf="all">全部</button>
+        <button class="wf" data-wf="core">核心</button>
+        <button class="wf" data-wf="high">高频</button>
+        <button class="wf" data-wf="adv">进阶</button>
+      </div>
+      <div id="wordsAll" class="word-grid"></div>
+    </div>
+  </section>
+
+  <!-- 语法库 -->
+  <section id="tab-grammar" class="panel">
+    <div class="card">
+      <h2>📖 基础语法库（从零到考试）</h2>
+      <div id="grammarList" class="grammar-list"></div>
+    </div>
+  </section>
+
+  <!-- 真题练习 -->
+  <section id="tab-practice" class="panel">
+    <div class="card">
+      <h2>✍️ 真题风格练习</h2>
+      <p class="muted">选取学位英语常考题型：单项选择、完形填空、阅读理解、翻译。做完看解析。</p>
+      <div id="practiceList"></div>
+    </div>
+  </section>
+
+  <!-- 作文模板 -->
+  <section id="tab-writing" class="panel">
+    <div class="card">
+      <h2>📝 作文万能模板</h2>
+      <p class="muted">学位英语作文常考"议论文/观点类"，背熟下面这些万能句型，考试套用就能拿分。</p>
+      <div id="writingList"></div>
+    </div>
+  </section>
+
+  <!-- 打卡 -->
+  <section id="tab-checkin" class="panel">
+    <div class="card">
+      <h2>✅ 我的学习打卡</h2>
+      <p class="muted">每天学完点"打卡"，进度会保存在你的浏览器里，手机电脑都能看。</p>
+      <div id="streakBox" class="streak"></div>
+      <div id="calendar" class="calendar"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">🎓 辽宁学位英语 · 每日轻松学 —— 每天10分钟，坚持就能过</footer>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
