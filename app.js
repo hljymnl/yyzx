@@ -29,13 +29,16 @@ let fastRound = 0; // 当前速测轮次
 let fastScore = 0;  // 得分
 let fastWrong = []; // 错题收集
 
+// 全局朗读语速：默认慢速（约正常语速的一半多一点，方便跟读学习）
+const SPEAK_RATE = 0.4;
+
 function speak(word) {
   // 页面语音合成，读单词发音
   try {
     if (!window.speechSynthesis) return;
     const u = new SpeechSynthesisUtterance(word);
     u.lang = "en-US";
-    u.rate = 0.85;
+    u.rate = SPEAK_RATE;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(u);
   } catch(e) {}
@@ -47,7 +50,7 @@ function speakRead() {
     if (!window.speechSynthesis || !txt) return;
     const u = new SpeechSynthesisUtterance(txt);
     u.lang = "en-US";
-    u.rate = 0.9;
+    u.rate = SPEAK_RATE;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(u);
   } catch(e) {}
@@ -69,7 +72,7 @@ function sayEx(el) {
     if (!window.speechSynthesis) return;
     const u = new SpeechSynthesisUtterance(en);
     u.lang = "en-US";
-    u.rate = 0.85;
+    u.rate = SPEAK_RATE;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(u);
   } catch(e) {}
@@ -514,7 +517,7 @@ function sayTpl(el) {
   try {
     if (!window.speechSynthesis) return;
     const u = new SpeechSynthesisUtterance(w.tpl.replace(/[\u4e00-\u9fff·…\d（）]/g, " "));
-    u.lang = "en-US"; u.rate = 0.9;
+    u.lang = "en-US"; u.rate = SPEAK_RATE;
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(u);
   } catch(e) {}
@@ -574,9 +577,9 @@ function speakSound(word, sym) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u1 = new SpeechSynthesisUtterance(sym);
-    u1.lang = "en-US"; u1.rate = 0.7;
+    u1.lang = "en-US"; u1.rate = 0.35;
     const u2 = new SpeechSynthesisUtterance(word);
-    u2.lang = "en-US"; u2.rate = 0.8;
+    u2.lang = "en-US"; u2.rate = 0.4;
     u1.onend = () => { try { window.speechSynthesis.speak(u2); } catch(e){} };
     window.speechSynthesis.speak(u1);
   } catch(e) {}
