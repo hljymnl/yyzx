@@ -29,8 +29,8 @@ let fastRound = 0; // 当前速测轮次
 let fastScore = 0;  // 得分
 let fastWrong = []; // 错题收集
 
-// 全局朗读语速：默认慢速（约正常语速的一半多一点，方便跟读学习）
-const SPEAK_RATE = 0.4;
+// 全局朗读语速：默认超慢速，方便零基础跟读（如仍嫌快可继续调小）
+const SPEAK_RATE = 0.13;
 
 function speak(word) {
   // 页面语音合成，读单词发音
@@ -577,9 +577,9 @@ function speakSound(word, sym) {
     if (!window.speechSynthesis) return;
     window.speechSynthesis.cancel();
     const u1 = new SpeechSynthesisUtterance(sym);
-    u1.lang = "en-US"; u1.rate = 0.35;
+    u1.lang = "en-US"; u1.rate = 0.12;
     const u2 = new SpeechSynthesisUtterance(word);
-    u2.lang = "en-US"; u2.rate = 0.4;
+    u2.lang = "en-US"; u2.rate = 0.13;
     u1.onend = () => { try { window.speechSynthesis.speak(u2); } catch(e){} };
     window.speechSynthesis.speak(u1);
   } catch(e) {}
