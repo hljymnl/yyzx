@@ -186,18 +186,21 @@ const READINGS = [
 const TODAY_QUIZ = [
   {
     q: "I have lived in Shenyang ______ 2019.",
+    qc: "我自 2019 年起就一直住在沈阳 ______。",
     opts: ["A. since", "B. for", "C. at", "D. in"],
     ans: 0,
     exp: "考查现在完成时搭配：since + 时间点（2019），for + 时间段。故选 A."
   },
   {
     q: "______ English well, you need to practice every day.",
+    qc: "要想 ______ 好英语，你需要每天练习。",
     opts: ["A. Speak", "B. To speak", "C. Speaking", "D. Spoken"],
     ans: 1,
     exp: "不定式作目的状语：\"为了把英语说好\"。To speak 表示目的，故选 B."
   },
   {
     q: "The teacher told us ______ late for class.",
+    qc: "老师告诉我们上课 ______ 迟到。",
     opts: ["A. not be", "B. not to be", "C. don't be", "D. not being"],
     ans: 1,
     exp: "tell sb. to do sth. 的否定形式是 tell sb. not to do sth.，故选 B."

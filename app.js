@@ -208,7 +208,7 @@ function renderQuiz(items, containerId, immediate) {
   const c = $(containerId);
   c.innerHTML = items.map((it, i) => `
     <div class="quiz-q" data-idx="${i}">
-      <div class="q-text">${it.q}</div>
+      <div class="q-text">${it.q}</div>${it.qc ? `<div class="q-text-cn">${it.qc}</div>` : ""}
       <div class="q-opts">
         ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
       </div>
