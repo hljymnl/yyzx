@@ -821,6 +821,49 @@ function checkBasic(li) {
 }
 
 // ---------- 打卡日历 ----------
+// ---------- 每日单词 ----------
+const DW_PER_DAY = 30;
+let _dailyWordsMode = "day"; // day=当日顺序 | rand=随机换一批
+// 按日期算当天应学的起始下标（每天自动往后推 30 词）
+function dailyWordStart() {
+  const now = new Date();
+  // 基准日 2026-01-01
+  const base = new Date(2026, 0, 1).getTime();
+  const days = Math.floor((now.getTime() - base) / 86400000);
+  return (days * DW_PER_DAY) % DAILY_WORDS.length;
+}
+function renderDailyWords() {
+  const total = DAILY_WORDS.length;
+  let start = dailyWordStart();
+  let batch;
+  if (_dailyWordsMode === "rand") {
+    // 换一批: 随机起点抽 30 词
+    start = Math.floor(Math.random() * total);
+    batch = [];
+    for (let i = 0; i < DW_PER_DAY; i++) batch.push(DAILY_WORDS[(start + i) % total]);
+  } else {
+    batch = [];
+    for (let i = 0; i < DW_PER_DAY; i++) batch.push(DAILY_WORDS[(start + i) % total]);
+  }
+  const dayNum = start / DW_PER_DAY + 1;
+  const info = `第 <b>${dayNum.toFixed(0)}</b> 组（共 ${Math.ceil(total / DW_PER_DAY)} 组 · 全库 ${total} 词）`;
+  const el = $("dwInfo"); if (el) el.innerHTML = info;
+  $("dailyWordsList").innerHTML = batch.map((w, wi) => `
+    <div class="word-item" data-wi="${wi}">
+      <div class="w-head">
+        <span class="w-word">${w.w}</span>
+        <span class="w-phon">${w.ph}</span>
+        <span class="w-pos">${w.pos}</span>
+        <button class="f-speak" title="听发音" onclick="speak('${w.w}')">🔊</button>
+      </div>
+      <div class="w-means" style="margin-top:4px">${w.means}</div>
+    </div>`).join("");
+}
+function shuffleDailyWords() {
+  _dailyWordsMode = "rand";
+  renderDailyWords();
+}
+
 function renderCalendar() {
   const c = getCheckins();
   const now = new Date();
@@ -877,6 +920,7 @@ function initTabs() {
 window.addEventListener("DOMContentLoaded", () => {
   initTabs();
   renderToday();
+  renderDailyWords();
   renderWordsAll();
   renderPhonics();
   renderBasic();

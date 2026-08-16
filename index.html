@@ -11,6 +11,7 @@
   <div class="logo">🌞 每天英语</div>
   <nav class="tabs">
     <button class="tab active" data-tab="today">📅 每日学习</button>
+    <button class="tab" data-tab="dailywords">📅 每日单词</button>
     <button class="tab" data-tab="words">📚 单词本</button>
     <button class="tab" data-tab="phonics">🔤 自然拼读</button>
     <button class="tab" data-tab="basic">🧩 基础练习</button>
@@ -64,6 +65,19 @@
       <button id="todaySubmit" class="btn primary">提交答案</button>
       <div id="todayResult" class="result"></div>
       <button id="todayDone" class="btn ghost">✅ 学完打卡</button>
+    </div>
+  </section>
+
+  <!-- 每日单词 -->
+  <section id="tab-dailywords" class="panel">
+    <div class="card">
+      <h2>📅 每日单词 <span class="tag">每天 30 词</span></h2>
+      <p class="muted">每天学 30 个学位英语核心词，当天自动更新，点"换一批"随机换一组。共 6000+ 词，滚动复习轻松积累词汇量。</p>
+      <div class="dw-bar">
+        <button class="btn ghost" onclick="shuffleDailyWords()">🔄 换一批（随机 30 词）</button>
+        <span id="dwInfo" class="muted" style="margin-left:12px"></span>
+      </div>
+      <div id="dailyWordsList" class="word-grid"></div>
     </div>
   </section>
 
@@ -213,6 +227,7 @@
 
 <footer class="footer">🌞 每天英语 —— 每天10分钟，坚持就能过</footer>
 
+<script src="daily_words.js"></script>
 <script src="data.js"></script>
 <script src="app.js"></script>
 </body>
