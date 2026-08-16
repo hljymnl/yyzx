@@ -824,6 +824,19 @@ function checkBasic(li) {
 // ---------- 每日单词 ----------
 const DW_PER_DAY = 30;
 let _dailyWordsMode = "day"; // day=当日顺序 | rand=随机换一批
+let _dwLoading = false;
+// 懒加载词库: daily_words.js 体积较大(~1.3MB), 首次打开每日单词时才按需加载
+function ensureDailyWords(cb) {
+  if (typeof DAILY_WORDS !== "undefined") { if (cb) cb(); return; }
+  if (_dwLoading) { return; } // 已在加载, 由加载回调触发渲染
+  _dwLoading = true;
+  const el = $("dwInfo"); if (el) el.innerHTML = "⏳ 正在加载 1.4 万词库…";
+  const sc = document.createElement("script");
+  sc.src = "daily_words.js";
+  sc.onload = () => { _dwLoading = false; if (cb) cb(); };
+  sc.onerror = () => { _dwLoading = false; if (el) el.innerHTML = "⚠️ 词库加载失败，请刷新重试"; };
+  document.body.appendChild(sc);
+}
 // 按日期算当天应学的起始下标（每天自动往后推 30 词）
 function dailyWordStart() {
   const now = new Date();
@@ -861,6 +874,7 @@ function renderDailyWords() {
 }
 function shuffleDailyWords() {
   _dailyWordsMode = "rand";
+  if (typeof DAILY_WORDS === "undefined") { ensureDailyWords(renderDailyWords); return; }
   renderDailyWords();
 }
 
@@ -904,6 +918,12 @@ function initTabs() {
       document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
       t.classList.add("active");
       $("tab-" + t.dataset.tab).classList.add("active");
+      // 每日单词: 首次打开才按需加载1.4万词库
+      if (t.dataset.tab === "dailywords" && typeof DAILY_WORDS === "undefined") {
+        ensureDailyWords(renderDailyWords);
+      } else if (t.dataset.tab === "dailywords") {
+        renderDailyWords();
+      }
     });
   });
   document.querySelectorAll(".wf").forEach(b => {
@@ -920,7 +940,6 @@ function initTabs() {
 window.addEventListener("DOMContentLoaded", () => {
   initTabs();
   renderToday();
-  renderDailyWords();
   renderWordsAll();
   renderPhonics();
   renderBasic();
