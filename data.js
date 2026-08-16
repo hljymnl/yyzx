@@ -96,52 +96,52 @@ const GRAMMAR = [
   {
     title: "1. 名词的数（单复数）",
     body: "名词分为可数名词和不可数名词。\n· 可数名词有单复数：book→books, box→boxes, city→cities\n· 不可数名词无复数：water, information, advice（注意：information 和 advice 不可数，不能说 informations / advices）\n· 常考：many + 可数复数；much + 不可数",
-    ex: "There is a lot of information on the Internet.（信息不可数，用 is）\nHe gave me some useful advice.（advice 不可数）"
+    ex: "There is a lot of information on the Internet.|互联网上有很多信息。（information 不可数，用 is）\\nHe gave me some useful advice.|他给了我一些有用的建议。（advice 不可数）"
   },
   {
     title: "2. 冠词 a / an / the",
     body: "· a/an 表示'一个'（泛指），the 表示'特指'或前面提过的东西。\n· 元音音素开头的词用 an：an apple, an hour（hour 的 h 不发音）\n· 固定搭配常考：in the morning, on the left, at night",
-    ex: "I have a book. The book is interesting.\nShe is an honest girl.（honest 的 h 不发音，用 an）"
+    ex: "I have a book. The book is interesting.|我有一本书。这本书很有趣。\\nShe is an honest girl.|她是一个诚实的女孩。（honest 的 h 不发音，用 an）"
   },
   {
     title: "3. 代词（主格/宾格/物主代词）",
     body: "主格作主语：I, you, he, she, it, we, they\n宾格作宾语：me, you, him, her, it, us, them\n形容词性物主代词后接名词：my book, your name\n名词性物主代词相当于名词：mine, yours, his, hers, ours, theirs",
-    ex: "She gave the book to me.（to + 宾格 me）\nThis is my pen. That pen is yours.（yours = your pen）"
+    ex: "She gave the book to me.|她把这本书给了我。（to + 宾格 me）\\nThis is my pen. That pen is yours.|这是我的钢笔。那支钢笔是你的。（yours = your pen）"
   },
   {
     title: "4. 时态之一：一般现在时",
     body: "表示经常性动作、客观事实、习惯。\n· 主语第三人称单数（he/she/it）动词加 -s/-es\n· 否定用 doesn't/doesn't：He doesn't like coffee.\n· 常与频度副词连用：always, usually, often, sometimes, never",
-    ex: "She goes to work by bus every day.\nThe earth goes around the sun.（客观事实）"
+    ex: "She goes to work by bus every day.|她每天坐公交车去上班。\\nThe earth goes around the sun.|地球绕着太阳转。（客观事实）"
   },
   {
     title: "5. 一般过去时",
     body: "表示过去发生的动作或状态。\n· 规则动词加 -ed：work→worked, play→played\n· 不规则动词需记忆：go→went, come→came, see→saw, do→did\n· 常见时间词：yesterday, last week, ago, in 2020",
-    ex: "I went to Beijing last summer.\nThey worked hard yesterday."
+    ex: "I went to Beijing last summer.|去年夏天我去了北京。\\nThey worked hard yesterday.|他们昨天工作很努力。"
   },
   {
     title: "6. 一般将来时",
     body: "表示将来发生的动作。\n· will + 动词原形\n· be going to + 动词原形（打算、计划）\n· 常见时间词：tomorrow, next week, soon, in the future",
-    ex: "I will call you tomorrow.\nWe are going to have a meeting next week."
+    ex: "I will call you tomorrow.|我明天会给你打电话。\\nWe are going to have a meeting next week.|我们下周要开一个会议。"
   },
   {
     title: "7. 现在完成时",
     body: "表示过去发生且对现在有影响，或持续到现在的动作。\n· have/has + 过去分词（不规则需记忆：buy→bought, eat→eaten）\n· 常与 already, yet, ever, never, just, since, for 连用\n· since + 时间点；for + 时间段",
-    ex: "I have already finished my homework.\nShe has lived here since 2018."
+    ex: "I have already finished my homework.|我已经完成了作业。\\nShe has lived here since 2018.|她从 2018 年起就住在这里。"
   },
   {
     title: "8. 被动语态",
     body: "be + 过去分词。当动作的承受者作主语时用被动。\n· 一般现在被动：is/are + done\n· 一般过去被动：was/were + done\n· 一般将来被动：will be + done",
-    ex: "English is spoken all over the world.\nThe bridge was built in 2000."
+    ex: "English is spoken all over the world.|全世界都在说英语。\\nThe bridge was built in 2000.|这座桥建于 2000 年。"
   },
   {
     title: "9. 比较级与最高级",
     body: "比较级：两者比较。最高级：三者以上比较。\n· 单音节词加 -er/-est：tall → taller → tallest\n· 多音节词用 more/most：important → more important\n· 常见结构：much/even + 比较级（更……得多）",
-    ex: "This book is more interesting than that one.\nShe is the tallest girl in her class."
+    ex: "This book is more interesting than that one.|这本书比那本更有趣。\\nShe is the tallest girl in her class.|她是班上最高的女孩。"
   },
   {
     title: "10. 非谓语动词（ing / to do）",
     body: "· enjoy, finish, mind, keep 等后接动词 -ing\n· want, decide, hope, plan, would like 等后接 to do\n· stop doing（停止做）/ stop to do（停下来去做另一件事）",
-    ex: "I enjoy reading English every day.\nShe decided to study harder."
+    ex: "I enjoy reading English every day.|我喜欢每天读英语。\\nShe decided to study harder.|她决定更加努力学习。"
   }
 ];
 
@@ -209,28 +209,40 @@ const PRACTICE = [
   {
     type: "单项选择",
     items: [
-      { q: "There are ______ students in our class.", opts: ["A. much", "B. many", "C. a few of", "D. a little"], ans: 1, exp: "students 是可数名词复数，用 many；much 修饰不可数。故选 B." },
-      { q: "He ______ his homework before going to bed last night.", opts: ["A. finishes", "B. is finishing", "C. finished", "D. has finished"], ans: 2, exp: "last night 是一般过去时标志，用过去式 finished。故选 C." },
-      { q: "This is the most beautiful place ______ I have ever visited.", opts: ["A. which", "B. where", "C. that", "D. what"], ans: 2, exp: "先行词被最高级 most beautiful 修饰时，关系代词只能用 that。故选 C." },
-      { q: "I'm looking forward to ______ you again.", opts: ["A. see", "B. seeing", "C. saw", "D. seen"], ans: 1, exp: "look forward to + doing（to 是介词），后接动名词 seeing。故选 B." },
-      { q: "It is important ______ English every morning.", opts: ["A. read", "B. reading", "C. to read", "D. reads"], ans: 2, exp: "it is important to do sth. 固定句型，不定式作真正主语。故选 C." }
+      { q: "There are ______ students in our class.",
+      qc: "我们班有 ______ 名学生。", opts: ["A. much", "B. many", "C. a few of", "D. a little"], ans: 1, exp: "students 是可数名词复数，用 many；much 修饰不可数。故选 B." },
+      { q: "He ______ his homework before going to bed last night.",
+      qc: "他昨晚睡觉前 ______ 了作业。", opts: ["A. finishes", "B. is finishing", "C. finished", "D. has finished"], ans: 2, exp: "last night 是一般过去时标志，用过去式 finished。故选 C." },
+      { q: "This is the most beautiful place ______ I have ever visited.",
+      qc: "这是我所游览过的最美的地方 ______。", opts: ["A. which", "B. where", "C. that", "D. what"], ans: 2, exp: "先行词被最高级 most beautiful 修饰时，关系代词只能用 that。故选 C." },
+      { q: "I'm looking forward to ______ you again.",
+      qc: "我盼望着再次 ______ 你。", opts: ["A. see", "B. seeing", "C. saw", "D. seen"], ans: 1, exp: "look forward to + doing（to 是介词），后接动名词 seeing。故选 B." },
+      { q: "It is important ______ English every morning.",
+      qc: "每天早上 ______ 英语很重要。", opts: ["A. read", "B. reading", "C. to read", "D. reads"], ans: 2, exp: "it is important to do sth. 固定句型，不定式作真正主语。故选 C." }
     ]
   },
   {
     type: "完形填空",
     passage: "Many people want to learn English well. The first step is to build up your vocabulary. If you know enough (1)____, you can understand most sentences. (2)____, knowing words is not enough. You also need grammar, which helps you put words (3)____ order.",
+    passageCn: "很多人想把英语学好。第一步是积累词汇。如果你认识足够多的单词(1)＿＿，就能看懂大部分句子。(2)＿＿，光认识单词还不够。你还需要语法，它帮你把单词(3)＿＿顺序排列起来。",
     items: [
-      { q: "(1)", opts: ["A. words", "B. money", "C. time", "D. food"], ans: 0, exp: "根据上下文，积累词汇即知道足够多的\"单词\"，故选 A." },
-      { q: "(2)", opts: ["A. Therefore", "B. However", "C. Finally", "D. So"], ans: 1, exp: "前后是转折关系：知道单词还不够，\"然而\"还需要语法，故选 B." },
-      { q: "(3)", opts: ["A. in", "B. on", "C. at", "D. by"], ans: 0, exp: "put...in order 意为\"按顺序排列\"，固定搭配，故选 A." }
+      { q: "(1)",
+      qc: "空(1)：应填一个名词，指积累「单词」。", opts: ["A. words", "B. money", "C. time", "D. food"], ans: 0, exp: "根据上下文，积累词汇即知道足够多的\"单词\"，故选 A." },
+      { q: "(2)",
+      qc: "空(2)：此处表转折。", opts: ["A. Therefore", "B. However", "C. Finally", "D. So"], ans: 1, exp: "前后是转折关系：知道单词还不够，\"然而\"还需要语法，故选 B." },
+      { q: "(3)",
+      qc: "空(3)：考查 put...in order（按顺序排列）。", opts: ["A. in", "B. on", "C. at", "D. by"], ans: 0, exp: "put...in order 意为\"按顺序排列\"，固定搭配，故选 A." }
     ]
   },
   {
     type: "阅读理解",
     passage: "The Internet has changed the way we study. Students can now find information online at any time. They can watch videos, read articles, and even take courses from famous universities. However, not everything on the Internet is correct. We should learn to judge what is useful and what is not.",
+    passageCn: "互联网改变了我们的学习方式。学生现在随时都能在网上查找信息。他们可以看视频、读文章，甚至学习著名大学的课程。然而，网上的内容并非全是对的。我们应该学会判断哪些有用、哪些没用。",
     items: [
-      { q: "What is the passage mainly about?", opts: ["A. The Internet is bad.", "B. The Internet changes the way we study.", "C. Students should not use the Internet.", "D. Universities are online."], ans: 1, exp: "首句点明主旨：网络改变了我们的学习方式，故选 B." },
-      { q: "According to the passage, what should we do on the Internet?", opts: ["A. Believe everything we see.", "B. Stop using it.", "C. Judge what is useful.", "D. Only watch videos."], ans: 2, exp: "文章结尾说 should learn to judge what is useful，故选 C." }
+      { q: "What is the passage mainly about?",
+      qc: "这篇文章主要讲什么？", opts: ["A. The Internet is bad.", "B. The Internet changes the way we study.", "C. Students should not use the Internet.", "D. Universities are online."], ans: 1, exp: "首句点明主旨：网络改变了我们的学习方式，故选 B." },
+      { q: "According to the passage, what should we do on the Internet?",
+      qc: "根据文章，我们在互联网上应该怎么做？", opts: ["A. Believe everything we see.", "B. Stop using it.", "C. Judge what is useful.", "D. Only watch videos."], ans: 2, exp: "文章结尾说 should learn to judge what is useful，故选 C." }
     ]
   },
   {

@@ -275,3 +275,11 @@ main { max-width: 860px; margin: 20px auto; padding: 0 16px; }
 /* ---------- 每日单词 ---------- */
 .dw-bar { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
 .dw-bar .muted { font-size: 14px; }
+
+/* ---------- 语法库例句中文翻译 ---------- */
+.exline .ex-en { font-weight: 600; color: #333; }
+.exline .ex-cn { color: #888; font-size: 13px; margin-top: 1px; }
+
+/* ---------- 真题练习/语法库 中文翻译 ---------- */
+.q-text-cn { color: #888; font-size: 13px; margin-top: 2px; }
+.passage-cn { display: block; color: #777; font-size: 13px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #d8e0f0; }

@@ -478,7 +478,7 @@ function renderPractice() {
   $("practiceList").innerHTML = PRACTICE.map((p, pi) => `
     <div class="card">
       <h2>${p.type}</h2>
-      ${p.passage ? `<p class="muted" style="background:#f7f9ff;padding:10px;border-radius:8px;">${p.passage}</p>` : ""}
+      ${p.passage ? `<p class="muted" style="background:#f7f9ff;padding:10px;border-radius:8px;">${p.passage}${p.passageCn ? `<span class="passage-cn">${p.passageCn}</span>` : ""}</p>` : ""}
       <div data-practice="${pi}"></div>
       <button class="btn primary" onclick="checkPractice(${pi})">查看答案</button>
     </div>`).join("");
@@ -489,7 +489,7 @@ function renderPractice() {
       // 完形：绑定题目里的题干文本已在 passage 展示
       holder.innerHTML = p.items.map((it, i) => `
         <div class="quiz-q" data-idx="${i}">
-          <div class="q-text">${it.q}</div>
+          <div class="q-text">${it.q}</div>${it.qc ? `<div class="q-text-cn">${it.qc}</div>` : ""}
           <div class="q-opts">
             ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
           </div>
@@ -498,7 +498,7 @@ function renderPractice() {
     } else if (p.items[0].opts.length > 0) {
       holder.innerHTML = p.items.map((it, i) => `
         <div class="quiz-q" data-idx="${i}">
-          <div class="q-text">${it.q}</div>
+          <div class="q-text">${it.q}</div>${it.qc ? `<div class="q-text-cn">${it.qc}</div>` : ""}
           <div class="q-opts">
             ${it.opts.map((o, j) => `<div class="q-opt" data-idx="${j}" onclick="selectOpt(this)">${o}</div>`).join("")}
           </div>
@@ -508,7 +508,7 @@ function renderPractice() {
       // 翻译题：无选项
       holder.innerHTML = p.items.map((it, i) => `
         <div class="quiz-q" data-idx="${i}">
-          <div class="q-text">${it.q}</div>
+          <div class="q-text">${it.q}</div>${it.qc ? `<div class="q-text-cn">${it.qc}</div>` : ""}
           <div class="q-explain" style="display:none"></div>
         </div>`).join("");
     }
@@ -716,8 +716,19 @@ function exLinesHtml(ex) {
   return String(ex).split(/\n/).map(line => {
     const t = line.trim();
     if (!t) return "";
+    // 支持 "英文|中文" 格式: 英文带🔊朗读, 中文翻译另起一行
+    const bar = t.indexOf("|");
+    if (bar > -1) {
+      const en = t.slice(0, bar).trim();
+      const cn = t.slice(bar + 1).trim();
+      if (en) {
+        return `<div class="exline"><span class="ex-en">${en}</span> <button class="link-speak" onclick="sayEx(this)">🔊 读句</button><div class="ex-cn">${cn}</div></div>`;
+      }
+      return `<div class="exline">${cn}</div>`;
+    }
+    // 兼容旧格式: 纯英文行带🔊, 否则原样
     if (/^[A-Za-z0-9]/.test(t) && /[A-Za-z]{2}/.test(t)) {
-      return `<div class="exline">${t} <button class="link-speak" onclick="sayEx(this)">🔊 读句</button></div>`;
+      return `<div class="exline"><span class="ex-en">${t}</span> <button class="link-speak" onclick="sayEx(this)">🔊 读句</button></div>`;
     }
     return `<div class="exline">${t}</div>`;
   }).join("");
